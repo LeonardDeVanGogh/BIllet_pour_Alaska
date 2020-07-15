@@ -1,0 +1,30 @@
+.comment
+{
+	border: solid 1px black;
+	margin-bottom: 2px;
+}
+.article
+{
+	border: solid 1px black;
+	margin-bottom:5em;
+}
+form
+{
+	border:solid 1px black;
+}
+#mainNav
+{
+	background-color:grey;
+}
+#manageArticle
+{
+	margin-top:3em;
+}
+#userSession
+{
+	margin-top:3em;
+}
+.navWithoutPicture
+{
+	margin-top:3em;
+}
