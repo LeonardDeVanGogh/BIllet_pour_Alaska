@@ -18,7 +18,7 @@ catch(Exception $e)
 $articleManager = new ArticleManager($dbh);
 
 if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new userManager($dbh);        
+  $userRankAdministration = new RankManager($dbh);        
   $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
   while($donnees = $nbActions->fetch()) {
     $permission = new Rank($donnees);   

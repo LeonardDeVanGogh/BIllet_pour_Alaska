@@ -15,13 +15,11 @@ catch(Exception $e)
 }
 
 if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new userManager($dbh);        
-    $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-    while($donnees = $nbActions->fetch()) {
-      $permission = new Rank($donnees);
-      
-    }
-
+  $userRankAdministration = new RankManager($dbh);        
+  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
+  while($donnees = $nbActions->fetch()) {
+    $permission = new Rank($donnees);   
+  }
 }
 
 

@@ -95,9 +95,9 @@
             {
                 $backEndControler->userDisconnection();
             } 
-        if($_GET['page']=="userAdministration")
+        if($_GET['page']=="rankAdministration")
             {
-                $backEndControler->userAdministration();
+                $backEndControler->rankAdministration();
             }
         if($_GET['page']=="userRankAdministration")
             {

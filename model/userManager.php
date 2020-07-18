@@ -30,12 +30,8 @@ class UserManager
 		$req = $this->_dbh->query("SELECT * FROM users WHERE email = '" . $email . "'" );
 		return $req;
 	}
-
-	public function rankAdministration($rank)
-	{
-		$req = $this->_dbh->query("SELECT * FROM rank WHERE rank ='" . $rank . "'");
-		return $req;		
-	}
+	
+	
 
 
 }

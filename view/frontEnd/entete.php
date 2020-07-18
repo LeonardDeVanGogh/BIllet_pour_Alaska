@@ -15,12 +15,12 @@
           <?php
             if (isset($permission) && $permission->article_add_update()==1){
               echo '<li class="nav-item">
-                      <a class="nav-link" href="index.php?page=manage_billet">Billet</a>
+                      <a class="nav-link" href="index.php?page=manage_billet">Manage Billet</a>
                     </li>';
             }
             if (isset($permission) && $permission->rank_update()==1){
               echo '<li class="nav-item">
-            <a class="nav-link" href="index.php?page=userAdministration">manage users</a>
+            <a class="nav-link" href="index.php?page=rankAdministration">manage users</a>
           </li>';
             }
           ?>

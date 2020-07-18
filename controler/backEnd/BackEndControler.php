@@ -46,9 +46,9 @@
 		{
 			require("controler/backend/user_disconnection.php");
 		}
-		public function userAdministration()
+		public function rankAdministration()
 		{
-			require("view/backend/user_administration.php");
+			require("view/backend/rank_administration.php");
 		}
 		public function userRankAdministration()
 		{
