@@ -80,7 +80,7 @@ if(isset($_SESSION['userRank'])){
                                     <h1>' . $article->title() . '</h1>
                                     <h2 class="subheading">' . $article->description() . '</h2>
                                     <span class="meta">Posted by
-                                      <a href="#">Jean Forteroche</a>
+                                      <a href="#">' . $article->auteur() . '</a>
                                       on ' . $article->date_article() . '</span>
                                   </div>
                                 </div>

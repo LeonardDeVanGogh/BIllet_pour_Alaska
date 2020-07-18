@@ -11,28 +11,6 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php">Home</a>
           </li>
-          
-          <?php
-            if (isset($permission) && $permission->article_add_update()==1){
-              echo '<li class="nav-item">
-                      <a class="nav-link" href="index.php?page=manage_billet">Manage Billet</a>
-                    </li>';
-            }
-            if (isset($permission) && $permission->rank_update()==1){
-              echo '<li class="nav-item">
-            <a class="nav-link" href="index.php?page=rankAdministration">droits d\'accès</a>
-          </li>';
-            }
-            if (isset($permission) && $permission->user_administration()==1){
-              echo '<li class="nav-item">
-                      <a class="nav-link" href="index.php?page=userAdministration">users</a>
-                    </li>'
-              ;
-            }
-
-          ?>
-          
-          
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
@@ -41,10 +19,33 @@
           </li>
 
           <?php
+            if (isset($_SESSION['userRank']) && $_SESSION['userRank']=="administrator"){
+              echo'<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      administratoration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+                      if (isset($permission) && $permission->article_add_update()==1){
+                        echo '<a class="dropdown-item" href="index.php?page=manage_billet">Manage Billet</a>';
+                      }
+                      if (isset($permission) && $permission->rank_update()==1){
+                        echo '<a class="dropdown-item" href="index.php?page=rankAdministration">droits d\'accès</a>';
+                      }
+                      if (isset($permission) && $permission->user_administration()==1){
+                        echo '<a class="dropdown-item" href="index.php?page=userAdministration">users</a>';
+                      }
+                    echo'</div>
+                  </li>
+              ';
+            }
             if (isset($_SESSION['userRank'])){
               echo '<li class="nav-item">
-                      <a class="nav-link" href="index.php?page=session">' . $_SESSION['userName'] . '</a>
-                    </li>';
+                      <a class="nav-link" href="index.php?page=session">Mon Espace</a>
+                    </li>
+                    <li class="nav-item">                     
+                      <a class="nav-link" title="Déconnexion" href="index.php?page=userDisconnection"><span class="fas fa-2x fa-sign-out-alt"></span></a>
+                    </li>
+                  ';
             }else{
               echo '<li class="nav-item">
                       <a class="nav-link" href="index.php?page=login">login</a>

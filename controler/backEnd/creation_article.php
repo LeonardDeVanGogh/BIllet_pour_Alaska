@@ -18,12 +18,12 @@ $articleTitle =  $_POST['articleTitle'];
 $articleDescription = $_POST['articleDescription'];
 $articleBody = $_POST['articleBody'];
 $articleId =  $_POST['articleId'];
-echo $articleId . '<br/>';
+$userName= $_SESSION['userName'];
 
 $articleManager = new articleManager($dbh);
 
 if ($articleId==0){
-	$articleManager->createArticle($articleTitle,$articleDescription,$articleBody);
+	$articleManager->createArticle($articleTitle,$articleDescription,$articleBody,$userName);
 	 $lastArticle = $articleManager->readLastId();
 	 
 	 while($donnees = $lastArticle->fetch()) {
@@ -34,7 +34,7 @@ if ($articleId==0){
     }
 
 }else{
-	$articleManager->updateArticle($articleId,$articleTitle,$articleDescription,$articleBody);
+	$articleManager->updateArticle($articleId,$articleTitle,$articleDescription,$articleBody,$userName);
 	$oneArticle = $articleManager->readOne($articleId);
 	 
 	 while($donnees = $oneArticle->fetch()) {

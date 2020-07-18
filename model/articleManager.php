@@ -16,13 +16,13 @@ class ArticleManager
 
     public function readAll()
     {
-        $req =  $this->_dbh->query("SELECT id, title, article, date_article, picture_name FROM article ORDER BY id DESC");
+        $req =  $this->_dbh->query("SELECT id, title, article, date_article, auteur, picture_name FROM article ORDER BY id DESC");
         return $req;
 
     }
     public function readOne($id)
     {
-        $req =  $this->_dbh->query("SELECT id, title, description, article, date_article, picture_name FROM article WHERE id =" . $id);
+        $req =  $this->_dbh->query("SELECT id, title, description, article, date_article, auteur, picture_name FROM article WHERE id =" . $id);
         return $req;
     }
     public function readLastId()
@@ -32,23 +32,26 @@ class ArticleManager
     }
 
 
-    public function createArticle($article_title,$article_description,$article_body)
+    public function createArticle($article_title,$article_description,$article_body,$user_name)
     {
-        $req = $this->_dbh->prepare('INSERT INTO article(title, description, article) VALUES(:title, :description, :article)');
+        $req = $this->_dbh->prepare('INSERT INTO article(title, description, article, auteur) VALUES(:title, :description, :article, :auteur)');
         $req->execute(array(
             'title'=> $article_title,
             'description' => $article_description,
             'article' => $article_body,
+            'auteur' => $user_name,
         ));
     }
-    public function updateArticle($articleId,$articleTitle,$articleDescription,$articleBody)
+    public function updateArticle($articleId,$articleTitle,$articleDescription,$articleBody,$user_name)
     {
-        $req= $this->_dbh->prepare("UPDATE article SET title = :articleTitle, description = :articleDescription, article = :articleBody WHERE id= :id");
+        $req= $this->_dbh->prepare("UPDATE article SET title = :articleTitle, description = :articleDescription, article = :articleBody,modified = :modified, modified_by = :user_name WHERE id= :id");
             $req->execute(array(
             'articleTitle' => $articleTitle,    
             'articleDescription' => $articleDescription,   
             'articleBody' => $articleBody,    
             'id' => $articleId,
+            'modified' => date("Y-m-d H:i:s"),
+            'user_name' => $user_name,
         ));
     }
     public function updatePictureName($id,$pictureName){

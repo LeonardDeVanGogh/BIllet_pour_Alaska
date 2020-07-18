@@ -7,6 +7,7 @@ class Article
     protected $_description;
     protected $_article;
     protected $_date_article;
+    protected $_auteur;
     protected $_picture_name;
 
     public function hydrate(array $donnees){
@@ -45,6 +46,10 @@ class Article
     {
         return $this->_date_article;
     }
+    public function auteur()
+    {
+        return $this->_auteur;
+    }
     public function pictureName()
     {
         return $this->_picture_name;
@@ -69,6 +74,10 @@ class Article
     public function setDate_article($date_article)
     {
         $this->_date_article = $date_article;
+    }
+    public function setAuteur($auteur)
+    {
+        $this->_auteur = $auteur;
     }
     public function setPicture_name($pictureName)
     {
