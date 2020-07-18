@@ -7,6 +7,7 @@ class Rank extends User
     protected $_comment_delete;
     protected $_article_add_update;
     protected $_article_delete;
+    protected $_user_administration;
     protected $_rank_update;
     protected $_user_rank_update;
 
@@ -53,6 +54,10 @@ class Rank extends User
     {
         return $this->_user_rank_update;
     }
+    public function user_administration()
+    {
+        return $this->_user_administration;
+    }
 
 
     public function setComment_moderation($comment_moderation)
@@ -83,6 +88,11 @@ class Rank extends User
     {
         $this->_user_rank_update = $user_rank_update;
     }
+    public function setUser_administration($user_administration)
+    {
+        $this->_user_administration = $user_administration;
+    }
+
 
 
 

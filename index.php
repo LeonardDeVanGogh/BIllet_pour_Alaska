@@ -102,7 +102,19 @@
         if($_GET['page']=="userRankAdministration")
             {
                 $backEndControler->userRankAdministration();
+            }   
+        if($_GET['page']=="userAdministration")
+            {
+                $backEndControler->userAdministration();
             }
+        if($_GET['page']=="user_management")
+            {
+                $backEndControler->userManagement();
+            } 
+        if($_GET['page']=="user_delete")
+            {
+                $backEndControler->userDelete();
+            }       
         if($_GET['page']=="test")
             {
                 $frontEndControler->test();

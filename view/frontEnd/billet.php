@@ -141,6 +141,7 @@ if(isset($_SESSION['userRank'])){
                                       <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=commentaire à caractère politique">commentaire à caractère politique</a>
                                       <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=autre">autre</a>
                                     </div>
+                                  <a>
                                 </div>
                               </div>
                             </article>

@@ -12,32 +12,34 @@ catch(Exception $e)
     die('Erreur : '.$e->getMessage());
 }
 
+
 if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
 {
 
 	$manager = new UserManager($dbh);
 	$email = $_POST['userEmail'];
 	$thisUser = $manager->readUser($email);
-	if($thisUser->rowcount()==0)
-	{
-		header("Location: index.php?page=inscription");
-	}
-	else
+	if($thisUser->rowcount()!==0)
 	{
 		while($donnees = $thisUser->fetch()){
-			$user = new User($donnees);
-			$_SESSION['userName'] = $user->user();
-			$_SESSION['userRank'] = $user->rank();
-			header("Location: index.php?page=session");
-			
-			
+			if ($donnees['password']===$_POST['passwordLogin']){
+				$user = new User($donnees);
+
+				$_SESSION['userName'] = $user->user();
+				$_SESSION['userRank'] = $user->rank();
+				header("Location: index.php?page=session");
+			}else{
+				header("Location: index.php?page=login&password=false");
+			}
+									
 		}
+		
+	}else{
+		header("Location: index.php?page=inscription&email=" . $_POST['userEmail']);
 	}
 	
-}
-else
-{
-	header("Location: index.php?page=login");
+}else{
+	header("Location: index.php?page=login&infos=empty");
 }
 
 

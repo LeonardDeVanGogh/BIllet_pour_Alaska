@@ -20,7 +20,7 @@ if(isset($_SESSION['userRank'])){
     $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
     while($donnees = $nbActions->fetch()) {
       $permission = new Rank($donnees);
-     echo 'ici mon texte ' .$permission->comment_moderation(); 
+     echo 'ici mon texte ' . $permission->comment_moderation(); 
     }
 
 }

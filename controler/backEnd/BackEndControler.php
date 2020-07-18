@@ -54,6 +54,18 @@
 		{
 			require("controler/backend/user_rank_administration.php");
 		}
+		public function userAdministration()
+		{
+			require("view/backend/user_administration.php");
+		}
+		public function userManagement()
+		{
+			require("controler/backend/user_management.php");
+		}
+		public function userDelete()
+		{
+			require("controler/backend/user_delete.php");
+		}
 
 
 		

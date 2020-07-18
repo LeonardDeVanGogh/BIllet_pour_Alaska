@@ -15,7 +15,7 @@ catch(Exception $e)
 }
 
 if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new userManager($dbh);        
+  $userRankAdministration = new rankManager($dbh);        
   $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
   while($donnees = $nbActions->fetch()) {
     $permission = new Rank($donnees);   
@@ -54,13 +54,30 @@ if(isset($_SESSION['userRank'])){
   <!-- Main Content -->
   <div class="container navWithoutPicture">
  
-    <?php 
-      $rank = "user";
-      include('view/backend/user_administration_form.php');
-      $rank = "moderator";
-      include('view/backend/user_administration_form.php');
-      $rank = "administrator";
-      include('view/backend/user_administration_form.php');
+    <?php
+      $userManager = new UserManager($dbh);
+      $users = $userManager->readAllUsers();
+      while($donnees = $users->fetch()) {
+        $user = new User($donnees);
+        echo '<div class="row">
+                <div class="col-lg-9">
+                  ' . $user->user() . '
+                </div>
+                <div class="col-lg-2">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    ' . $user->rank() . '
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="menuDeroulant">
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=user">user</a>
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=moderator">moderator</a>
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=administrator">administrator</a>
+                  </div>
+                </div>
+                <a class="col-lg-1 fas fa-times-circle" href="index.php?page=user_delete&user_id=' . $user->id() . '"></a>
+              </div>
+            <hr>';   
+      }
     ?>
               
   </div>

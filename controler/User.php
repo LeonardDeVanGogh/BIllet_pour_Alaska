@@ -2,6 +2,7 @@
 
 class User
 {
+    protected $_id;
     protected $_user;
     protected $_email;
     protected $_password;
@@ -22,6 +23,10 @@ class User
         $this->hydrate($donnees);
     }
 
+    public function id()
+    {
+        return $this->_id;
+    }
     public function user()
     {
     	return $this->_user;
@@ -39,6 +44,10 @@ class User
         return $this->_rank;
     }
 
+    public function setId($id)
+    {
+        $this->_id = $id;
+    }
     public function setUser($user)
     {
     	$this->_user = $user;

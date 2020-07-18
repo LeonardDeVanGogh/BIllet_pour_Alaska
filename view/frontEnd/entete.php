@@ -20,9 +20,16 @@
             }
             if (isset($permission) && $permission->rank_update()==1){
               echo '<li class="nav-item">
-            <a class="nav-link" href="index.php?page=rankAdministration">manage users</a>
+            <a class="nav-link" href="index.php?page=rankAdministration">droits d\'accès</a>
           </li>';
             }
+            if (isset($permission) && $permission->user_administration()==1){
+              echo '<li class="nav-item">
+                      <a class="nav-link" href="index.php?page=userAdministration">users</a>
+                    </li>'
+              ;
+            }
+
           ?>
           
           
