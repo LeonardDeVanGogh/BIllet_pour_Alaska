@@ -12,10 +12,7 @@
             <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=test">test</a>
+            <a class="nav-link" href="index.php?page=contact">Contact</a>
           </li>
 
           <?php
@@ -25,14 +22,11 @@
                       administratoration
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-                      if (isset($permission) && $permission->article_add_update()==1){
-                        echo '<a class="dropdown-item" href="index.php?page=manage_billet">Manage Billet</a>';
-                      }
                       if (isset($permission) && $permission->rank_update()==1){
-                        echo '<a class="dropdown-item" href="index.php?page=rankAdministration">droits d\'accès</a>';
+                        echo '<a class="dropdown-item" href="index.php?page=rankAdministration">Droits D\'accès</a>';
                       }
                       if (isset($permission) && $permission->user_administration()==1){
-                        echo '<a class="dropdown-item" href="index.php?page=userAdministration">users</a>';
+                        echo '<a class="dropdown-item" href="index.php?page=userAdministration">Gestion Utilisateurs</a>';
                       }
                     echo'</div>
                   </li>

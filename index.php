@@ -114,12 +114,11 @@
         if($_GET['page']=="user_delete")
             {
                 $backEndControler->userDelete();
-            }       
-        if($_GET['page']=="test")
+            }
+        if($_GET['page']=="contact")
             {
-                $frontEndControler->test();
-            }                                                
-
+                $frontEndControler->contact();
+            }       
     }
     else
     {

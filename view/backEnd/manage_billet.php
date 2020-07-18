@@ -1,20 +1,11 @@
-
-
-
 <?php
 
 
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
+$database = new Database();
+$dbh = $database->getConnection();
 
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
 $articleManager = new ArticleManager($dbh);
 
 if(isset($_SESSION['userRank'])){
@@ -70,7 +61,7 @@ if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDA
 <body>
 
   <!-- Navigation -->
-<?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontend/entete.php');?>
 
 
 
@@ -119,31 +110,7 @@ if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDA
       </div>
     </form>
   </div>
-
-  <?php            
-    $nbArticles = $articleManager->readAll();
-    while($donnees = $nbArticles->fetch())
-    {
-        $article = new Article($donnees);
-
-        echo'<div class="row">
-              <a class="col-lg-11" href="index.php?page=manage_billet&id_article=' . $article->id() . '">
-                <h6 class="post-title">
-                  ID' . $article->id() . ": " . $article->title() . '
-                </h6>
-                
-              </a>
-              <div class="col-lg-1">
-                <a role="button" class="controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=' . $article->id() . '"></a>
-              </div>
-              </div>
-            <hr>'
-        ;
-    }
-  ?>
-
 </div>
-
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

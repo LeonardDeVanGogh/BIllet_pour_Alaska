@@ -4,15 +4,8 @@ ini_set('error_reporting', E_ALL);
 
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+$database = new Database();
+$dbh = $database->getConnection();
 
 $user = $_POST['userInscription'];
 $email = $_POST['userEmailInscription'];

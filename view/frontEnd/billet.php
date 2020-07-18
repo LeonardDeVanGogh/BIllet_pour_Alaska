@@ -4,15 +4,8 @@ ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
-
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+$database = new Database();
+$dbh = $database->getConnection();
 
 if(isset($_SESSION['userRank'])){
   $userRankAdministration = new RankManager($dbh);        
@@ -54,104 +47,116 @@ if(isset($_SESSION['userRank'])){
 <body>
 
   <!-- Navigation -->
-<?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontend/entete.php');?>
 
 
 
   <?php
             
-            if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
-            {
-                $manager = new ArticleManager($dbh);
-                $nbArticles  = $manager->readOne($_GET['id_article']);
+        if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
+        {
+            $manager = new ArticleManager($dbh);
+            $nbArticles  = $manager->readOne($_GET['id_article']);
 
-                while($donnees = $nbArticles->fetch()) {
+            while($donnees = $nbArticles->fetch()) {
 
-                    $article = new Article($donnees);
+                $article = new Article($donnees);
 
 
-                    echo'<!-- Page Header -->
-                          <header class="masthead" style="background-image: url(\'img/' . $article->pictureName() . '\')">
-                            <div class="overlay"></div>
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-lg-8 col-md-10 mx-auto">
-                                  <div class="post-heading">
-                                    <h1>' . $article->title() . '</h1>
-                                    <h2 class="subheading">' . $article->description() . '</h2>
-                                    <span class="meta">Posted by
-                                      <a href="#">' . $article->auteur() . '</a>
-                                      on ' . $article->date_article() . '</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </header>
-
-                          <!-- Post Content -->
-                          <article>
-
-                            <div class="container article">
-                              <div class="row">
-                                <div class="col-lg-8 col-md-10 mx-auto">
-                                  ' . $article->article() . '
-                                </div>
-                              </div>
-                            </div>
-                          </article>';
-                    
-                }
-
-                $commentManager = new CommentManager($dbh);
-                $nbComments  = $commentManager->readComment($_GET['id_article']);
-
-                while($donnees = $nbComments->fetch()) {
-
-                  $comment = new Comment($donnees);
-
-                  echo'
-                      <!-- Comment Content -->
-                      
+                echo'<!-- Page Header -->
+                      <header class="masthead" style="background-image: url(\'img/' . $article->pictureName() . '\')">
+                        <div class="overlay"></div>
                         <div class="container">
-                          <div class="row col-lg-12 justify-content-center">
-                            <article class="col-lg-4 comment" id="' . $comment->id() . '">
-                              <div class="row justify-content-center">
-                                <div class="mx-auto">
-                                  ' . $comment->comment() . '
-                                </div>
-                              </div>                            
-                              <div class="row justify-content-end">';
-                              if (isset($permission) && $permission->comment_hidden()==1){
-                                echo '<div class="col-lg-1">
-                                  <a role="button" class="controls fas fa-ban" aria-haspopup="true" aria-expanded="false" title="modérer" href="index.php?page=hide_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '"></a>
-                                </div>';
-                              }
-                              if (isset($permission) && $permission->comment_delete()==1){
-                                echo '<div class="col-lg-1">
-                                  <a role="button" class="controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer" href="index.php?page=delete_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '"></a>
-                                </div>';
-                              }
-                                
-                                echo'
-                                <div class="col-lg-2">               
-                                  <a role="button" class="controls far fa-flag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="signaler">(' . $comment->report() . ')</a>
-                                    <div class="dropdown-menu" aria-labelledby="menuDeroulant">
-                                      <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=insulte/injure">insulte/injure</a>
-                                      <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=propos offensant/racisme">propos offensant/racisme</a>
-                                      <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=commentaire à caractère politique">commentaire à caractère politique</a>
-                                      <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=autre">autre</a>
-                                    </div>
-                                  <a>
-                                </div>
+                          <div class="row">
+                            <div class="col-lg-8 col-md-10 mx-auto">
+                              <div class="post-heading">
+                                <h1>' . $article->title() . '</h1>
+                                <h2 class="subheading">' . $article->description() . '</h2>
+                                <span class="meta">Posted by
+                                  <a href="#">' . $article->auteur() . '</a>
+                                  on ' . $article->date_article() . '</span>
                               </div>
-                            </article>
+                            </div>
                           </div>
                         </div>
-                  ';                    
-                }
+                      </header>
+                      <div class="container">
+                        <div class="row justify-content-center">';
+                          if (isset($permission) && $permission->article_update()==1){
+                            echo'<a role="button" class="col-lg-1 controls fas fa-edit" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=' . $article->id() . '"></a>';
+                          }
+                          if (isset($permission) && $permission->article_delete()==1){
+                            echo'<a role="button" class="col-lg-1 controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=' . $article->id() . '"></a>';
+                          }
 
+                        echo'</div>
+                      </div>
+                      
+                      <!-- Post Content -->
+                      <article>
+
+                        <div class="container article">
+                          
+                          <div class="row">
+                            <div class="col-lg-8 col-md-10 mx-auto">
+                              ' . $article->article() . '
+                            </div>
+                          </div>
+                        </div>
+                      </article>';
+                
             }
-        ?>
+
+            $commentManager = new CommentManager($dbh);
+            $nbComments  = $commentManager->readComment($_GET['id_article']);
+
+            while($donnees = $nbComments->fetch()) {
+
+              $comment = new Comment($donnees);
+
+              echo'
+                  <!-- Comment Content -->
+                  
+                    <div class="container">
+                      <div class="row col-lg-12 justify-content-center">
+                        <article class="col-lg-4 comment" id="' . $comment->id() . '">
+                          <div class="row justify-content-center">
+                            <div class="mx-auto">
+                              ' . $comment->comment() . '
+                            </div>
+                          </div>                            
+                          <div class="row justify-content-end">';
+                          if (isset($permission) && $permission->comment_hidden()==1){
+                            echo '<div class="col-lg-1">
+                              <a role="button" class="controls fas fa-ban" aria-haspopup="true" aria-expanded="false" title="modérer" href="index.php?page=hide_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '"></a>
+                            </div>';
+                          }
+                          if (isset($permission) && $permission->comment_delete()==1){
+                            echo '<div class="col-lg-1">
+                              <a role="button" class="controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer" href="index.php?page=delete_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '"></a>
+                            </div>';
+                          }
+                            
+                            echo'
+                            <div class="col-lg-2">               
+                              <a role="button" class="controls far fa-flag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="signaler">(' . $comment->report() . ')</a>
+                                <div class="dropdown-menu" aria-labelledby="menuDeroulant">
+                                  <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=insulte/injure">insulte/injure</a>
+                                  <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=propos offensant/racisme">propos offensant/racisme</a>
+                                  <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=commentaire à caractère politique">commentaire à caractère politique</a>
+                                  <a class="dropdown-item" href="index.php?page=report_comment&comment_id=' . $comment->id() . '&id_article=' . $article->id() . '&report_reason=autre">autre</a>
+                                </div>
+                              <a>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+              ';                    
+            }
+
+        }
+    ?>
 
         <div class="container">
           <div class="row col-lg-12 justify-content-center">
@@ -174,41 +179,7 @@ if(isset($_SESSION['userRank'])){
   <hr>
 
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php require_once('view/frontend/footer.php');?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

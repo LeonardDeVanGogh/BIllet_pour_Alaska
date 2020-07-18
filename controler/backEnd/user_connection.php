@@ -2,15 +2,9 @@
 
 
 spl_autoload_register('chargerClasse');
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
 
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+$database = new Database();
+$dbh = $database->getConnection();
 
 
 if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
@@ -27,7 +21,7 @@ if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
 
 				$_SESSION['userName'] = $user->user();
 				$_SESSION['userRank'] = $user->rank();
-				header("Location: index.php?page=session");
+				header("Location: index.php?page=home");
 			}else{
 				header("Location: index.php?page=login&password=false");
 			}

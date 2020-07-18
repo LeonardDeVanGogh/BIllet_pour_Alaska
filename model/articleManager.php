@@ -22,16 +22,18 @@ class ArticleManager
     }
     public function readOne($id)
     {
-        $req =  $this->_dbh->query("SELECT id, title, description, article, date_article, auteur, picture_name FROM article WHERE id =" . $id);
+        $req = $this->_dbh->prepare("SELECT id, title, description, article, date_article, auteur, picture_name FROM article WHERE id = :id");
+        $req->execute(array(
+            'id' => $id,
+            ));
         return $req;
     }
     public function readLastId()
     {
         $req =  $this->_dbh->query("SELECT id, title, description, article, date_article, picture_name FROM article ORDER BY id DESC LIMIT 0, 1");
         return $req;
+
     }
-
-
     public function createArticle($article_title,$article_description,$article_body,$user_name)
     {
         $req = $this->_dbh->prepare('INSERT INTO article(title, description, article, auteur) VALUES(:title, :description, :article, :auteur)');

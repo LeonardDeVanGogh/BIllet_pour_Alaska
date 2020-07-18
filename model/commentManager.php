@@ -16,12 +16,18 @@ class CommentManager
 
     public function readComment($idArticle)
     {
-        $req =  $this->_dbh->query("SELECT id, id_article, comment, report, hidden FROM comment WHERE id_article=" . $idArticle . " AND hidden <> '1'  ORDER BY id DESC");
+        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report, hidden FROM comment WHERE id_article = :id_article AND hidden <> '1'  ORDER BY id DESC");
+        $req->execute(array(
+            'id_article' => $idArticle,
+            ));
         return $req;
     }
     public function readOneComment($idComment)
     {
-        $req =  $this->_dbh->query("SELECT id, id_article, comment, report FROM comment WHERE id=" . $idComment);
+        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report FROM comment WHERE id = :id");
+        $req->execute(array(
+            'id' => $idComment,
+            ));
         return $req;
     }
     public function updateCommentReport($nbReport,$idComment,$report_reason)

@@ -3,15 +3,8 @@
 
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
-
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+$database = new Database();
+$dbh = $database->getConnection();
 
 if(isset($_SESSION['userRank'])){
   $userRankAdministration = new RankManager($dbh);        
@@ -68,6 +61,12 @@ if(isset($_SESSION['userRank'])){
     </div>
   </header>
 
+  <div class="container">
+    <div class="row">
+      <a role="button" class="col-lg-1 controls fas fa-file-alt" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"></a>
+    </div>
+  </div>
+
   <!-- Main Content -->
   <div class="container">
     <div class="row">
@@ -108,41 +107,7 @@ if(isset($_SESSION['userRank'])){
   <hr>
 
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php require_once('view/frontend/footer.php');?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -24,13 +24,14 @@ class RankManager
 		return $req;		
 	}
 
-	public function rankUpdate($commentModeration,$commentHidden,$commentDelete,$articleAddUpdate,$articleDelete,$userAdministration,$rankUpdate,$userRankUpdate,$rank){
-		$req= $this->_dbh->prepare("UPDATE rank SET comment_moderation = :comment_moderation, comment_hidden = :comment_hidden, comment_delete = :comment_delete, user_administration = :user_administration, article_add_update = :article_add_update, article_delete = :article_delete, rank_update = :rank_update, user_rank_update = :user_rank_update WHERE rank= :rank");
+	public function rankUpdate($commentModeration,$commentHidden,$commentDelete,$articleAdd,$articleUpdate,$articleDelete,$userAdministration,$rankUpdate,$userRankUpdate,$rank){
+		$req= $this->_dbh->prepare("UPDATE rank SET comment_moderation = :comment_moderation, comment_hidden = :comment_hidden, comment_delete = :comment_delete, user_administration = :user_administration, article_add = :article_add, article_update = :article_update, article_delete = :article_delete, rank_update = :rank_update, user_rank_update = :user_rank_update WHERE rank= :rank");
             $req->execute(array(
             'comment_moderation' => $commentModeration,
             'comment_hidden' => $commentHidden,
             'comment_delete' => $commentDelete,
-            'article_add_update' => $articleAddUpdate,
+            'article_add' => $articleAdd,
+            'article_update' => $articleUpdate,
             'article_delete' => $articleDelete,
             'user_administration' => $userAdministration,
             'rank_update' => $rankUpdate,

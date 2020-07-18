@@ -27,11 +27,10 @@
 		{
 			require('view/frontend/session.php');
 		}
-		public function test()
+		public function contact()
 		{
-			require('view/frontend/test.php');
+			require('view/frontend/contact.php');
 		}
-
 	}
 
 ?>

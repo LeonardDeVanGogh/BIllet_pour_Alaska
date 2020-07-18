@@ -2,22 +2,12 @@
 
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
-
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
-
+$database = new Database();
+$dbh = $database->getConnection();
 
 $articleId =  $_GET['id_article'];
 
-
 $articleManager = new articleManager($dbh);
-
 
 $oneArticle = $articleManager->readOne($articleId);
 	 
@@ -27,6 +17,6 @@ $oneArticle = $articleManager->readOne($articleId);
         } 
 $articleManager->deleteArticle($articleId);
 
-header("Location: index.php?page=manage_billet");
+header("Location: index.php?page=home");
 
 ?>

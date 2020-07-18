@@ -26,7 +26,10 @@ class UserManager
 
 	public function readUser($email)
 	{
-		$req = $this->_dbh->query("SELECT * FROM users WHERE email = '" . $email . "'" );
+		$req = $this->_dbh->prepare("SELECT * FROM users WHERE email = :email");
+        $req->execute(array(
+            'email' => $email,
+            ));
 		return $req;
 	}
 	

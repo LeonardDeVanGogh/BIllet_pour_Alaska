@@ -5,7 +5,8 @@ class Rank extends User
     protected $_comment_moderation;
     protected $_comment_hidden;
     protected $_comment_delete;
-    protected $_article_add_update;
+    protected $_article_add;
+    protected $_article_update;
     protected $_article_delete;
     protected $_user_administration;
     protected $_rank_update;
@@ -38,9 +39,13 @@ class Rank extends User
     {
         return $this->_comment_delete;
     }
-    public function article_add_update()
+    public function article_add()
     {
-        return $this->_article_add_update;
+        return $this->_article_add;
+    }
+    public function article_update()
+    {
+        return $this->_article_update;
     }
     public function article_delete()
     {
@@ -72,9 +77,13 @@ class Rank extends User
     {
         $this->_comment_delete = $comment_delete;
     }
-    public function setArticle_add_update($article_add_update)
+    public function setArticle_add($article_add)
     {
-        $this->_article_add_update = $article_add_update;
+        $this->_article_add = $article_add;
+    }
+    public function setArticle_update($article_update)
+    {
+        $this->_article_update = $article_update;
     }
     public function setArticle_delete($article_delete)
     {

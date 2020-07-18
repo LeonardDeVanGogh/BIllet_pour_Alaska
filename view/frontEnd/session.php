@@ -1,15 +1,8 @@
 <?php
 spl_autoload_register('chargerClasse');
 
-try
-{
-    $dbh = new PDO('mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8', 'root', '');
-
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+$database = new Database();
+$dbh = $database->getConnection();
 
 if(isset($_SESSION['userRank'])){
   $userRankAdministration = new RankManager($dbh);        
@@ -50,11 +43,12 @@ if(isset($_SESSION['userRank'])){
   <!-- Main Content -->
   <div class="container" id="userSession">
     <div class="row">
-      <a href="index.php?page=userDisconnection">déconnexion</a>
+      <div class="col-lg-12">hello</div>
     </div>
   </div>
-      
-
+  
+  <!-- Footer -->    
+  <?php require_once('view/frontend/footer.php');?>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 

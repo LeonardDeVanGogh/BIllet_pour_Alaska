@@ -17,7 +17,7 @@
           foreach($donnees as $key => $value){
             $method = $key;
 
-            if(method_exists($permission,$method) && $method!=="rank"){
+            if(method_exists($permission,$method) && $method!=="rank" && $method!=="id"){
                 $permission->$method($value);
                 echo '<div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" name="' . $key . '" value="' . $permission->$method($value) . '"'; 
