@@ -11,6 +11,12 @@ if(isset($_SESSION['userRank'])){
     $permission = new Rank($donnees);   
   }
 }
+$userManager = new UserManager($dbh);
+$userInfos = $userManager->readUser($_SESSION['userEmail']);
+while ($donnees = $userInfos->fetch()){
+  $user = new User($donnees);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -41,9 +47,91 @@ if(isset($_SESSION['userRank'])){
 
 
   <!-- Main Content -->
-  <div class="container" id="userSession">
+  <div class="container navWithoutPicture">
     <div class="row">
-      <div class="col-lg-12">hello</div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form name="userNameUpdate" id="userNameUpdate" method="post" action="index.php?page=userInfosUpdate&what=userNameUpdate" novalidate>
+          <div class="control-group">
+            <div class="form-group controls">
+              <label>Modifier pseudonyme</label>
+              <?php echo '<input type="text" class="form-control" name="userName" id="userName" value="' . $user->user() . '" required data-validation-required-message="Please enter your email address.">';?>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>        
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" name="userConnectionButton" id="userConnectionButton">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <?php 
+      if (isset($_GET['emailAlreadyUsed'])){
+        echo '<div class="row">
+              <div class="col-lg-8 col-md-10 mx-auto">email déjà utilisé</div>
+              </div>';
+      }
+    ?>
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form name="userEmailUpdate" id="userEmailUpdate" method="post" action="index.php?page=userInfosUpdate&what=userEmailUpdate" novalidate>
+          <div class="control-group">
+            <div class="form-group controls">
+              <label>Modifier email</label>
+              <?php echo '<input type="text" class="form-control" name="userEmail" id="userName" value="' . $_SESSION['userEmail'] . '" required data-validation-required-message="Please enter your email address.">';?>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>        
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" name="userConnectionButton" id="userConnectionButton">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <?php 
+      if (isset($_GET['passwordUpdated'])){
+        if($_GET['passwordUpdated']=="true"){
+          echo '<div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">Succès</div>
+              </div>';
+        }elseif($_GET['passwordUpdated']=="false"){
+          echo '<div class="row">
+                  <div class="col-lg-8 col-md-10 mx-auto">Erreur</div>
+                </div>';
+        }
+        
+      }
+    ?>
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form name="userPasswordUpdate" id="userPasswordUpdate" method="post" action="index.php?page=userInfosUpdate&what=userPasswordUpdate" novalidate>
+          <div class="control-group">
+            <div class="form-group controls">
+              <label>Mot de passe actuel</label>
+              <input type="password" class="form-control" name="actualPassword" id="actualPassword" placeholder="Ancien mot de passe">
+              <label>Nouveau mot de passe</label>
+              <div class="row">
+                <div class="col">
+                  <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Nouveau mot de passe">
+                </div>
+                <div class="col">
+                  <input type="password" class="form-control" name="newPasswordCheck" id="newPasswordCheck" placeholder="Vérification mot de passe">
+                </div>
+              </div>
+              
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>        
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" name="userConnectionButton" id="userConnectionButton">Update</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   

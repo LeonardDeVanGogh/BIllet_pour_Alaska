@@ -31,6 +31,10 @@
 		{
 			require('view/frontend/contact.php');
 		}
+		public function userInfosUpdate()
+		{
+			require('controler/frontend/userInfosUpdate.php');
+		}
 	}
 
 ?>

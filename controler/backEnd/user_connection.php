@@ -19,7 +19,7 @@ if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
 			if ($donnees['password']===$_POST['passwordLogin']){
 				$user = new User($donnees);
 
-				$_SESSION['userName'] = $user->user();
+				$_SESSION['userEmail'] = $user->email();
 				$_SESSION['userRank'] = $user->rank();
 				header("Location: index.php?page=home");
 			}else{

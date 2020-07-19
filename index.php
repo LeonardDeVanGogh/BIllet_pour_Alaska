@@ -118,6 +118,10 @@
         if($_GET['page']=="contact")
             {
                 $frontEndControler->contact();
+            }
+        if($_GET['page']=="userInfosUpdate")
+            {
+                $frontEndControler->userInfosUpdate();
             }       
     }
     else
