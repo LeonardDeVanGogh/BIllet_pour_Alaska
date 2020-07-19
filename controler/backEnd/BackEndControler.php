@@ -66,6 +66,14 @@
 		{
 			require("controler/backend/user_delete.php");
 		}
+		public function commentModeration()
+		{
+			require("view/backend/comment_moderation.php");
+		}
+		public function validateComment()
+		{
+			require("controler/backend/validate_comment.php");
+		}
 
 
 		

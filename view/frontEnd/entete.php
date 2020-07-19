@@ -19,7 +19,7 @@
             if (isset($_SESSION['userRank']) && $_SESSION['userRank']=="administrator"){
               echo'<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      administratoration
+                      Administration
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
                       if (isset($permission) && $permission->rank_update()==1){
@@ -31,6 +31,19 @@
                     echo'</div>
                   </li>
               ';
+            }
+            if (isset($_SESSION['userRank']) && ($_SESSION['userRank']=="moderator" OR $_SESSION['userRank']=="administrator")){
+              echo'<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Modération
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="index.php?page=commentModeration">Commentaires</a>
+                    </div>
+                  </li>
+
+              ';
+              
             }
             if (isset($_SESSION['userRank'])){
               echo '<li class="nav-item">

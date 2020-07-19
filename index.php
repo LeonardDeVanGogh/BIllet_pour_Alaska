@@ -122,7 +122,15 @@
         if($_GET['page']=="userInfosUpdate")
             {
                 $frontEndControler->userInfosUpdate();
-            }       
+            }
+        if($_GET['page']=="commentModeration")
+            {
+                $backEndControler->commentModeration();
+            }
+        if($_GET['page']=="validate_comment")
+            {
+                $backEndControler->validateComment();
+            }        
     }
     else
     {
