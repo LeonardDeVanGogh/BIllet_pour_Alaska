@@ -1,6 +1,6 @@
 <?php
 
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 $database = new Database();

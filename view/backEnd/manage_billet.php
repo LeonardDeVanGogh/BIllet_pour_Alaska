@@ -1,31 +1,26 @@
 <?php
 
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
-$database = new Database();
-$dbh = $database->getConnection();
+  $database = new Database();
+  $dbh = $database->getConnection();
 
-$articleManager = new ArticleManager($dbh);
+  require_once('controler/frontend/protect_access.php');
+  if (isset($permission)){
+    if($permission->article_add()==1 OR $permission->article_update()==1){
 
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new RankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
 
-if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
-            {
-                
-                $nbArticles  = $articleManager->readOne($_GET['id_article']);
+  
 
-                while($donnees = $nbArticles->fetch()) {
+      $articleManager = new ArticleManager($dbh);
 
-                    $article = new Article($donnees);
-                  }
-            }
+      if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT)){                
+        $nbArticles  = $articleManager->readOne($_GET['id_article']);
+        while($donnees = $nbArticles->fetch()) {
+            $article = new Article($donnees);
+          }
+      }
 
 ?>
 
@@ -122,3 +117,10 @@ if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDA
 </body>
 
 </html>
+ 
+<?php
+      
+    }
+  }else{
+    header("Location:index.php?page=home");
+  }

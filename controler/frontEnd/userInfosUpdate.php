@@ -1,6 +1,9 @@
 <?php
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
+  require_once('controler/frontend/protect_access.php');
+  if (isset($permission)){
+ 
 
 $database = new Database();
 $dbh = $database->getConnection();
@@ -54,4 +57,6 @@ if ($role=="userPasswordUpdate"){
 	}
 	
 }
-
+  }else {
+    header("Location: index.php");
+  }

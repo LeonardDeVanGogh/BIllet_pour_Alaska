@@ -1,20 +1,14 @@
 <?php
 
-ini_set('display_errors', '1');
-ini_set('error_reporting', E_ALL);
-spl_autoload_register('chargerClasse');
+  ini_set('display_errors', '1');
+  ini_set('error_reporting', E_ALL);
+defined("_Can_access_") or die("Inclusion directe non autorisée");
+  spl_autoload_register('chargerClasse');
 
-$database = new Database();
-$dbh = $database->getConnection();
+  $database = new Database();
+  $dbh = $database->getConnection();
 
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new RankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
-
+  require_once('controler/frontend/protect_access.php');
 
 ?>
 
@@ -60,36 +54,36 @@ if(isset($_SESSION['userRank'])){
 
             while($donnees = $nbArticles->fetch()) {
 
-                $article = new Article($donnees);
+                $article = new Article($donnees); ?>
 
 
-                echo'<!-- Page Header -->
-                      <header class="masthead" style="background-image: url(\'img/' . $article->pictureName() . '\')">
+                <!-- Page Header -->
+                      <header class="masthead" style="background-image: url(\img/<?= $article->pictureName() ?>)">
                         <div class="overlay"></div>
                         <div class="container">
                           <div class="row">
                             <div class="col-lg-8 col-md-10 mx-auto">
                               <div class="post-heading">
-                                <h1>' . $article->title() . '</h1>
-                                <h2 class="subheading">' . $article->description() . '</h2>
+                                <h1><?= $article->title() ?></h1>
+                                <h2 class="subheading"><?= $article->description() ?></h2>
                                 <span class="meta">Posted by
-                                  <a href="#">' . $article->auteur() . '</a>
-                                  on ' . $article->date_article() . '</span>
+                                  <a href="#"><?= $article->auteur() ?></a>
+                                  on <?= $article->date_article() ?></span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </header>
                       <div class="container">
-                        <div class="row justify-content-center">';
-                          if (isset($permission) && $permission->article_update()==1){
-                            echo'<a role="button" class="col-lg-1 controls fas fa-edit" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=' . $article->id() . '"></a>';
-                          }
-                          if (isset($permission) && $permission->article_delete()==1){
-                            echo'<a role="button" class="col-lg-1 controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=' . $article->id() . '"></a>';
-                          }
+                        <div class="row justify-content-center">
+                          <?php if (isset($permission) && $permission->article_update()==1){ ?>
+                            <a role="button" class="col-lg-1 controls fas fa-edit" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=<?= $article->id() ?>"></a>
+                          <?php }
+                          if (isset($permission) && $permission->article_delete()==1){ ?>
+                            <a role="button" class="col-lg-1 controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=<?= $article->id() ?>"></a>
+                          <?php } ?>
 
-                        echo'</div>
+                        </div>
                       </div>
                       
                       <!-- Post Content -->
@@ -99,25 +93,26 @@ if(isset($_SESSION['userRank'])){
                           
                           <div class="row">
                             <div class="col-lg-8 col-md-10 mx-auto">
-                              ' . $article->article() . '
+                              <?= $article->article() ?>
                             </div>
                           </div>
                         </div>
-                      </article>';
+                      </article>
                 
-            }
+            <?php } ?>
 
-            echo'<div class="container">';
+            <div class="container">'
 
+            <?php
             $commentManager = new CommentManager($dbh);
             $idArticle = $_GET['id_article'];
             $nbComments  = $commentManager->readComment($_GET['id_article']);
             while ($donnees = $nbComments->fetch()){
               include('view/frontend/comment.php');
-            }
+            }?>
             
-            echo '</div>';
-        }
+            </div>
+        <?php }
     ?>
 
         <div class="container">

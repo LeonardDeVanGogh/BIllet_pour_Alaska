@@ -1,5 +1,5 @@
 <?php
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 class Rank extends User
 {
     protected $_comment_moderation;

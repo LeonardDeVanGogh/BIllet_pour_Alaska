@@ -2,18 +2,15 @@
 ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
 
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
 
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new rankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
+include('controler/frontend/protect_access.php');
+  if (isset($permission)){
+    if($permission->rank_update()==1){ 
 
 ?>
 
@@ -75,3 +72,9 @@ if(isset($_SESSION['userRank'])){
 </body> 
 
 </html>
+
+<?php 
+  }
+    }else{
+      header("Location:index.php");
+    }

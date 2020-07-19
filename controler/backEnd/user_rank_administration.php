@@ -1,10 +1,12 @@
 <?php
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
-
+  require_once('controler/frontend/protect_access.php');
+  if (isset($permission)){
+    if($permission->rank_administration()==1){
 
 echo $_POST['rank'] . "<br/>";
 $rank = $_POST['rank'];
@@ -25,4 +27,7 @@ $rankManager = new RankManager($dbh);
 $rankManager->rankUpdate($commentModeration,$commentHidden,$commentDelete,$articleAdd,$articleUpdate,$articleDelete,$userAdministration,$rankUpdate,$userRankUpdate,$rank);
 
 header("Location: index.php?page=rankAdministration");
-
+    }   
+  }else {
+    header("Location: index.php");
+  }

@@ -1,9 +1,12 @@
 <?php
-
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
+
+
+
 
 $commentManager = new CommentManager($dbh);
 $commentData  = $commentManager->readOneComment($_GET['comment_id']);

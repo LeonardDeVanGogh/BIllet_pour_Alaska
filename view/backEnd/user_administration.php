@@ -2,18 +2,15 @@
 ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
 
+defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
 
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new rankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
+  require_once('controler/frontend/protect_access.php');
+  if (isset($permission)){
+    if($permission->user_administration()==1 OR $permission->user_rank_administration()==1){
 
 ?>
 
@@ -52,25 +49,26 @@ if(isset($_SESSION['userRank'])){
       $users = $userManager->readAllUsers();
       while($donnees = $users->fetch()) {
         $user = new User($donnees);
-        echo '<div class="row">
+    ?>
+        <div class="row">
                 <div class="col-lg-9">
-                  ' . $user->user() . '
+                  <?= $user->user() ?>
                 </div>
                 <div class="col-lg-2">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    ' . $user->rank() . '
+                    <?= $user->rank() ?>
                     <span class="caret"></span>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="menuDeroulant">
-                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=user">user</a>
-                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=moderator">moderator</a>
-                    <a class="dropdown-item" href="index.php?page=user_management&user_id=' . $user->id() . '&new_rank=administrator">administrator</a>
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=<?= $user->id() ?>&new_rank=user">user</a>
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=<?= $user->id() ?>&new_rank=moderator">moderator</a>
+                    <a class="dropdown-item" href="index.php?page=user_management&user_id=<?= $user->id() ?>&new_rank=administrator">administrator</a>
                   </div>
                 </div>
-                <a class="col-lg-1 fas fa-times-circle" href="index.php?page=user_delete&user_id=' . $user->id() . '"></a>
+                <a class="col-lg-1 fas fa-times-circle" href="index.php?page=user_delete&user_id=<?= $user->id() ?>"></a>
               </div>
-            <hr>';   
-      }
+            <hr>   
+     <?php  }
     ?>
               
   </div>
@@ -92,3 +90,8 @@ if(isset($_SESSION['userRank'])){
 </body> 
 
 </html>
+<?php
+    }
+  }else{
+    header("Location:index.php?page=home");
+  }

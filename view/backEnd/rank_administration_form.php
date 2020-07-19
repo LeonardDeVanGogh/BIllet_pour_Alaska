@@ -1,3 +1,12 @@
+<?php
+
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
+  include('controler/frontend/protect_access.php');
+  if (isset($permission)){
+    if($permission->rank_update()==1){ 
+
+?>
+
 
 <?php echo '
   <div class="row">
@@ -18,22 +27,26 @@
             $method = $key;
 
             if(method_exists($permission,$method) && $method!=="rank" && $method!=="id"){
-                $permission->$method($value);
-                echo '<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="' . $key . '" value="' . $permission->$method($value) . '"'; 
-                        if ($permission->$method($value)==1){echo ' checked';}
-                        echo '>
-                        <label class="form-check-label" for="inlineCheckbox1">' . $key . '</label>
-                      </div>';
+              $permission->$method($value); ?>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="<?= $key ?>" value="<?= $permission->$method($value) ?>"<?php if ($permission->$method($value)==1){ ?> checked <?php } ?> >
+                <label class="form-check-label" for="inlineCheckbox1"><?= $key ?></label>
+              </div>
+      <?php 
             }
-        }
-
-        }
-        echo '<input type="hidden" name="rank" value="' . $rank . '">';
+          }
+        } 
       ?>
+        <input type="hidden" name="rank" value="<?= $rank ?>">
+
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </div>
 </form>
+<?php 
+  }
+    }else{
+      header("Location:/index.php");
+    }

@@ -1,22 +1,19 @@
 <?php
-spl_autoload_register('chargerClasse');
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
+  spl_autoload_register('chargerClasse');
 
-$database = new Database();
-$dbh = $database->getConnection();
+  $database = new Database();
+  $dbh = $database->getConnection();
 
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new RankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
-$userManager = new UserManager($dbh);
-$userInfos = $userManager->readUser($_SESSION['userEmail']);
-while ($donnees = $userInfos->fetch()){
-  $user = new User($donnees);
-}
+  require_once('controler/frontend/protect_access.php');
 
+  if(isset($_SESSION['userEmail'])){
+    $userManager = new UserManager($dbh);
+    $userInfos = $userManager->readUser($_SESSION['userEmail']);
+    while ($donnees = $userInfos->fetch()){
+      $user = new User($donnees);
+    }
+  
 
 ?>
 <!DOCTYPE html>
@@ -93,18 +90,20 @@ while ($donnees = $userInfos->fetch()){
     </div>
     <?php 
       if (isset($_GET['passwordUpdated'])){
-        if($_GET['passwordUpdated']=="true"){
-          echo '<div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">Succès</div>
-              </div>';
-        }elseif($_GET['passwordUpdated']=="false"){
-          echo '<div class="row">
-                  <div class="col-lg-8 col-md-10 mx-auto">Erreur</div>
-                </div>';
-        }
-        
-      }
-    ?>
+        if($_GET['passwordUpdated']=="true"){ ?>
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">Succès</div>
+          </div>
+      <?php 
+        }elseif($_GET['passwordUpdated']=="false"){?>
+      
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">Erreur</div>
+          </div>
+      <?php 
+        }         
+      } ?>
+           
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <form name="userPasswordUpdate" id="userPasswordUpdate" method="post" action="index.php?page=userInfosUpdate&what=userPasswordUpdate" novalidate>
@@ -151,3 +150,8 @@ while ($donnees = $userInfos->fetch()){
 </body> 
 
 </html>
+
+<?php 
+  }else{
+    header("Location: index.php");
+  }

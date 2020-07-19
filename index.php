@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    define("_Can_access_", true);
 
     function chargerClasse($className)
     {
@@ -20,6 +21,7 @@
 
     $backEndControler = new BackEndControler;
     $frontEndControler = new FrontEndControler;
+
 
     if (isset($_GET['page']))
     {

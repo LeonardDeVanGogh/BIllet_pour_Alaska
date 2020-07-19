@@ -1,4 +1,5 @@
 <?php
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
   $email = (isset($_GET['email'])) ? $_GET['email'] : "";
 ?>
 

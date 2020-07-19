@@ -1,18 +1,11 @@
 <?php
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
+  spl_autoload_register('chargerClasse');
 
+  $database = new Database();
+  $dbh = $database->getConnection();
 
-spl_autoload_register('chargerClasse');
-
-$database = new Database();
-$dbh = $database->getConnection();
-
-if(isset($_SESSION['userRank'])){
-  $userRankAdministration = new RankManager($dbh);        
-  $nbActions = $userRankAdministration->rankAdministration($_SESSION['userRank']);
-  while($donnees = $nbActions->fetch()) {
-    $permission = new Rank($donnees);   
-  }
-}
+  require_once('controler/frontend/protect_access.php');  
 ?>
 
 
@@ -62,10 +55,16 @@ if(isset($_SESSION['userRank'])){
   </header>
 
   <div class="container">
-    <div class="row">
-      <a role="button" class="col-lg-1 controls fas fa-file-alt" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"></a>
-    </div>
+    <?php 
+      if(isset($permission) && $permission->article_add()==1){ ?>
+        <div class="row">
+          <a role="button" class="col-lg-1 controls fas fa-file-alt" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"></a>
+        </div>
   </div>
+    <?php 
+      } 
+    ?>
+    
 
   <!-- Main Content -->
   <div class="container">
@@ -76,23 +75,22 @@ if(isset($_SESSION['userRank'])){
             $nbArticles  = $manager->readAll();
             while($donnees = $nbArticles->fetch())
             {
-                $article = new Article($donnees);
-
-                echo'<div class="post-preview">
-                      <a href="index.php?page=billet&id_article=' . $article->id() . '">
+                $article = new Article($donnees);?>
+                    <div class="post-preview">
+                      <a href="index.php?page=billet&id_article=<?= $article->id()?> ">
                         <h2 class="post-title">
-                          ' .  $article->title() . '
+                          <?=  $article->title() ?>
                         </h2>
                         <h3 class="post-subtitle">
-                          ' .  $article->article() . '
+                          <?= $article->article() ?>
                         </h3>
                       </a>
                       <p class="post-meta">Posted by
-                        <a href="#">' . $article->auteur() . '</a>
-                        on ' . $article->date_article() . '</p>
+                        <a href="#"><?= $article->auteur() ?></a>
+                        on<?= $article->date_article() ?></p>
                     </div>
-                    <hr>'
-                ;
+                    <hr>
+                <?php
             }
         ?>
 

@@ -1,3 +1,6 @@
+<?php
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
+?>
 <footer>
   <div class="container">
     <div class="row">

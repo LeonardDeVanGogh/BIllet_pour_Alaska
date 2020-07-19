@@ -1,3 +1,8 @@
+
+<?php
+  defined("_Can_access_") or die("Inclusion directe non autorisée");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
