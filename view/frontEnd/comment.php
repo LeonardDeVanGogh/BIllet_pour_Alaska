@@ -15,17 +15,17 @@
               if($comment->moderated()==0){
                 if (isset($permission) && $permission->comment_moderation()==1){ ?>
                   <div class="col-lg-1 col-xs-1">
-                    <a role="button" class="controls fas fa-check" aria-haspopup="true" aria-expanded="false" title="valider" href="index.php?page=validate_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
+                    <a role="button" class="controls fas fa-check" aria-haspopup="true" aria-expanded="false" title="Le commentaire est signalé pour rien ? il reste publié" href="index.php?page=validate_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
                   </div>
                 <?php }
                 if (isset($permission) && $permission->comment_hidden()==1){ ?>
                   <div class="col-lg-1 col-xs-1">
-                    <a role="button" class="controls fas fa-ban" aria-haspopup="true" aria-expanded="false" title="modérer" href="index.php?page=hide_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
+                    <a role="button" class="controls fas fa-ban" aria-haspopup="true" aria-expanded="false" title="Le commentaire est signalé ? c'est justifié et je ne souhaite plus le voir" href="index.php?page=hide_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
                   </div>
                 <?php }
                 if (isset($permission) && $permission->comment_delete()==1){ ?>
                   <div class="col-lg-1 col-xs-1">
-                    <a role="button" class="controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer" href="index.php?page=delete_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
+                    <a role="button" class="controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="Supprimer ce commentaire" href="index.php?page=delete_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>"></a>
                   </div>
                 <?php 
                 } 
