@@ -10,7 +10,7 @@
 
 <?php echo '
   <div class="row">
-    <div class="col-lg-3">' . $rank . '</div>
+    <h3 class="col-lg-3">' . $rank . '</h3>
   </div>'  
 ?>
 
@@ -40,7 +40,10 @@
         <input type="hidden" name="rank" value="<?= $rank ?>">
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-edit"></i>
+          <span> Modifier</span>
+        </button>
       </div>
     </div>
   </div>

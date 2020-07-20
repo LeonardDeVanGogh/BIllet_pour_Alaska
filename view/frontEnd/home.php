@@ -32,6 +32,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -58,7 +59,7 @@
     <?php 
       if(isset($permission) && $permission->article_add()==1){ ?>
         <div class="row">
-          <a role="button" class="col-lg-1 controls fas fa-file-alt" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"></a>
+          <a role="button" class="col-lg-6 mx-auto controls fas fa-file-alt fa-3x addArticle" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"> Nouvel Article</a>
         </div>
   </div>
     <?php 
@@ -82,7 +83,7 @@
                           <?=  $article->title() ?>
                         </h2>
                         <h3 class="post-subtitle">
-                          <?= $article->article() ?>
+                          <?= $article->description() ?>
                         </h3>
                       </a>
                       <p class="post-meta">Posted by

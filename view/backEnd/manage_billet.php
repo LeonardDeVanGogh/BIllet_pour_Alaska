@@ -101,7 +101,10 @@ spl_autoload_register('chargerClasse');
         
       </div>
       <div class="form-group">
-        <button role="button" type="submit" class="far fa-envelope" id="billet">add/update</button>
+        <button role="button" class="btn btn-primary" type="submit" id="billet">
+          <i class="far fa-envelope"></i>
+          <span> Add / Update</span>
+        </button>
       </div>
     </form>
   </div>

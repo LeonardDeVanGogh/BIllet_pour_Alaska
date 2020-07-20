@@ -16,7 +16,7 @@ class ArticleManager
 
     public function readAll()
     {
-        $req =  $this->_dbh->query("SELECT id, title, article, date_article, auteur, picture_name FROM article ORDER BY id DESC");
+        $req =  $this->_dbh->query("SELECT id, title, article, description, date_article, auteur, picture_name FROM article ORDER BY id DESC");
         return $req;
 
     }

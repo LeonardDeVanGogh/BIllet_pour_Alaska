@@ -18,7 +18,7 @@ while($donnees = $commentData->fetch()) {
 	$commentManager->deleteComment($comment->id());
 }
 
-header("Location: index.php?page=billet&id_article=" . filter_var($_GET['id_article'], FILTER_VALIDATE_INT));    }   
+header("Location: index.php?page=billet&id_article=" . filter_var($_GET['id_article'], FILTER_VALIDATE_INT));   
   	}
   }else {
     header("Location: index.php");

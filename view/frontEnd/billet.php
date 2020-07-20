@@ -47,91 +47,101 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 
   <?php
             
-        if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
-        {
-            $manager = new ArticleManager($dbh);
-            $nbArticles  = $manager->readOne($_GET['id_article']);
+    if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
+    {
+      $manager = new ArticleManager($dbh);
+      $nbArticles  = $manager->readOne($_GET['id_article']);
 
-            while($donnees = $nbArticles->fetch()) {
+      while($donnees = $nbArticles->fetch()) {
 
-                $article = new Article($donnees); ?>
-
-
-                <!-- Page Header -->
-                      <header class="masthead" style="background-image: url(\img/<?= $article->pictureName() ?>)">
-                        <div class="overlay"></div>
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-lg-8 col-md-10 mx-auto">
-                              <div class="post-heading">
-                                <h1><?= $article->title() ?></h1>
-                                <h2 class="subheading"><?= $article->description() ?></h2>
-                                <span class="meta">Posted by
-                                  <a href="#"><?= $article->auteur() ?></a>
-                                  on <?= $article->date_article() ?></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </header>
-                      <div class="container">
-                        <div class="row justify-content-center">
-                          <?php if (isset($permission) && $permission->article_update()==1){ ?>
-                            <a role="button" class="col-lg-1 controls fas fa-edit" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=<?= $article->id() ?>"></a>
-                          <?php }
-                          if (isset($permission) && $permission->article_delete()==1){ ?>
-                            <a role="button" class="col-lg-1 controls fas fa-times-circle" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=<?= $article->id() ?>"></a>
-                          <?php } ?>
-
-                        </div>
-                      </div>
-                      
-                      <!-- Post Content -->
-                      <article>
-
-                        <div class="container article">
-                          
-                          <div class="row">
-                            <div class="col-lg-8 col-md-10 mx-auto">
-                              <?= $article->article() ?>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                
-            <?php } ?>
-
-            <div class="container">'
-
-            <?php
-            $commentManager = new CommentManager($dbh);
-            $idArticle = $_GET['id_article'];
-            $nbComments  = $commentManager->readComment($_GET['id_article']);
-            while ($donnees = $nbComments->fetch()){
-              include('view/frontend/comment.php');
-            }?>
-            
+        $article = new Article($donnees); ?>
+        <!-- Page Header -->
+        <header class="masthead" style="background-image: url('img/<?= $article->pictureName() ?>')">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                  <h1><?= $article->title() ?></h1>
+                  <h2 class="subheading"><?= $article->description() ?></h2>
+                  <span class="meta">Posted by
+                    <a href="#"><?= $article->auteur() ?></a>
+                    on <?= $article->date_article() ?></span>
+                </div>
+              </div>
             </div>
-        <?php }
-    ?>
+          </div>
+        </header>
 
         <div class="container">
-          <div class="row col-lg-12 justify-content-center">
-            <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=addComment" novalidate>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <label></label>
-                  <input type="textarea" class="form-control" name="addComment" placeHolder="écrivez votre commentaire ici" required data-validation-required-message="merci d'écrire votre commentaire">
-                  <p class="help-block text-danger"></p>
-                </div>
-                  <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
-                </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary fas fa-mail" id="sendCommentButton">envoyer</button>
-              </div>
-            </form>
+          <div class="row justify-content-center col-lg-8 mx-auto">
+            <?php if (isset($permission) && $permission->article_update()==1){ ?>
+                <a role="button" class="col-lg-4 controls text-center align-middle buttonColorUpdate" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=<?= $article->id() ?>">
+                  <i class="fas fa-edit fa-1x"></i>
+                  <span>Editer Article</span>
+                </a>
+            <?php }
+            if (isset($permission) && $permission->article_delete()==1){ ?>
+              <a role="button" class="col-lg-4 controls text-center buttonColorDelete" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=<?= $article->id() ?>">
+                <i class="fas fa-times-circle fa-1x"></i>
+                <span>Effacer Article</span>
+              </a>
+            <?php } ?>
+
           </div>
         </div>
+
+        <!-- Post Content -->
+        <article>
+          <div class="container article">                
+            <div class="row">
+              <div class="col-lg-8 col-md-10 mx-auto">
+                <?= $article->article() ?>
+              </div>
+            </div>
+          </div>
+        </article>';
+          
+    <?php
+      } ?>
+
+      <div class="container">
+        <div class="row col-lg-12 justify-content-center">
+          <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=addComment" novalidate>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label></label>
+                <input type="textarea" class="form-control" name="addComment" placeHolder="écrivez votre commentaire ici" required data-validation-required-message="merci d'écrire votre commentaire">
+                <p class="help-block text-danger"></p>
+              </div>
+                <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
+              </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="sendCommentButton">
+                <i class="fas fa-envelope"></i>
+                <span> Envoyer</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="container" style="background-image: url('img/comment-background.jpg')">
+    
+        <?php
+        $commentManager = new CommentManager($dbh);
+        $idArticle = $_GET['id_article'];
+        $nbComments  = $commentManager->readComment($_GET['id_article']);
+        while ($donnees = $nbComments->fetch()){
+          include('view/frontend/comment.php');
+        }?>
+      
+      </div>
+    </div>
+  <?php
+    } ?>
+
+
 
   <hr>
 

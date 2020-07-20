@@ -20,6 +20,7 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
  
 <body>
@@ -28,7 +29,7 @@
 <?php require_once('view/frontend/entete.php');?>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/connection-background.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -46,18 +47,18 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <?php echo (isset($_GET['infos']))? '<div class="row"><div class="col-lg-10">tous les champs doivent être complétés</div></div>':'';?>
+        <?php echo (isset($_GET['infos']))? '<div class="row"><div class="col-lg-10 text-center colorWrong">tous les champs doivent être complétés</div></div>':'';?>
         <form name="userConnectionForm" id="userConnectionFrom" method="post" action="index.php?page=userConnection" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Quel est votre nom utilisateur?</label>
-              <?php echo '<input type="text" class="form-control" name="userEmail" id="userEmail" placeHolder="email" value="' . $email . '" required data-validation-required-message="Please enter your email address.">';?>
+              <?php echo '<input type="text" class="form-control" name="userEmail" id="userEmail" placeHolder="email" value="' . $email . '">';?>
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <?php echo (isset($_GET['password']))? '<div class="row"><div class="col-lg-6">mot de passe incorrect</div></div>':'';?>
+              <?php echo (isset($_GET['password']))? '<div class="row"><div class="col-lg-6 colorWrong">mot de passe incorrect</div></div>':'';?>
               <label>Quel est votre mot de passe?</label>
               <input type="password" class="form-control" name="passwordLogin" id="passwordLogin" placeHolder="Mot de passe" required data-validation-required-message="Please enter your password.">
               <p class="help-block text-danger"></p>

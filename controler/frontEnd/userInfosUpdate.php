@@ -17,6 +17,8 @@ while($donnees = $userInfos->fetch()){
 
 if ($role=="userNameUpdate"){
 	$userManager->updateName($user->id(),$_POST['userName']);
+	header("Location:index.php?page=session");
+
 }
 
 if ($role=="userEmailUpdate"){

@@ -1,15 +1,27 @@
+body{
+	background-color:white;
+}
 .comment
 {
 	border: solid 1px black;
-	margin-bottom: 2px;
+	background-color:#5F9EA0;
+	margin-bottom: 0.2em;
+	box-shadow: 0.1em 0.1em grey;
+}
+form{
+	border: solid 1px black;
+	padding:0.1em;
+	margin: 0.2em;
+	box-shadow: 0.2em 0.2em grey;
 }
 .article
 {
-	border: solid 1px black;
-	margin-bottom:5em;
+	margin-bottom:3em;
 }
-form
+#newComment
 {
+	box-shadow: 0.2em 0.2em grey;
+	margin:1em;
 	border:solid 1px black;
 }
 #mainNav
@@ -27,4 +39,96 @@ form
 .navWithoutPicture
 {
 	margin-top:3em;
+}
+.addArticle
+{
+	box-shadow: 0.2em 0.2em grey;
+	margin-bottom:1em;
+}
+.addArticle:hover 
+{
+	color:black;
+	text-decoration:none;
+	background-color:white;
+	border-left:solid 0.5em green;
+	border-right:solid 0.5em green;
+	border-bottom:solid 1px black;
+	border-top:solid 1px black;
+
+}
+.buttonColorAdd
+{
+	border-left:solid 0.5em green;
+	border-right:solid 0.5em green;
+}
+.buttonColorAdd:hover
+{
+	border-left:solid 0.5em green;
+	border-right:solid 0.5em green;
+}
+.buttonColorUpdate
+{
+	color:black;
+	box-shadow: 0.2em 0.2em grey;
+	margin:0.3em;
+	background-color:#A9A9A9;
+
+}
+.buttonColorUpdate:hover
+{
+	text-decoration:none;
+	color:black;
+	
+	border-left:solid 0.5em yellow;
+	border-right:solid 0.5em yellow;
+}
+.buttonColorDelete
+{
+	color:black;
+	box-shadow: 0.2em 0.2em grey;
+	margin:0.3em;
+	background-color:#A9A9A9;
+}
+.buttonColorDelete:hover
+{
+	text-decoration:none;
+	color:black;
+	border-left:solid 0.5em red;
+	border-right:solid 0.5em red;
+}
+.colorWrong
+{
+	color:red;
+}
+.colorRight
+{
+	color:green;
+}
+.fa-times-circle
+{
+	color:red;
+}
+.fa-times-circle:hover
+{
+	color:#BC0303;
+	text-decoration:none;
+}
+.fa-check
+{
+	color:green;
+}
+.fa-check:hover
+{
+	color:#03A125;
+	text-decoration:none;
+}
+.fa-ban
+{
+	color:orange;
+}
+.fa-ban:hover
+{
+	color:#AB6A02;
+	text-decoration:none;
+
 }
