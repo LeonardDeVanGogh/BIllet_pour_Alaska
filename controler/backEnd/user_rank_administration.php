@@ -6,7 +6,7 @@ $database = new Database();
 $dbh = $database->getConnection();
   require_once('controler/frontend/protect_access.php');
   if (isset($permission)){
-    if($permission->rank_administration()==1){
+    if($permission->rank_update()==1){
 
 echo $_POST['rank'] . "<br/>";
 $rank = $_POST['rank'];

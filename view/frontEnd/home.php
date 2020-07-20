@@ -59,7 +59,7 @@
     <?php 
       if(isset($permission) && $permission->article_add()==1){ ?>
         <div class="row">
-          <a role="button" class="col-lg-6 mx-auto controls fas fa-file-alt fa-3x addArticle" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet"> Nouvel Article</a>
+          <a role="button" class="col-lg-6 mx-auto controls fas fa-file-alt fa-3x addArticle" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet&id_article=0"> Nouvel Article</a>
         </div>
   </div>
     <?php 

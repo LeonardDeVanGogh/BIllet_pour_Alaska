@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('error_reporting', E_ALL);
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
@@ -27,7 +25,7 @@ if (isset($permission)){
                 $article = new Article($donnees);
                 $article->savePicture();
                 $articleManager->updatePictureName($article->id(),$article->pictureName());                                        
-              }
+            }
 
         }elseif($articleId>=1 && $permission->article_update()==1){
         	$articleManager->updateArticle($articleId,$articleTitle,$articleDescription,$articleBody,$userName);
@@ -35,7 +33,7 @@ if (isset($permission)){
         	 
         	while($donnees = $oneArticle->fetch()) {
                 $article = new Article($donnees);
-                $article->savePicture($article->pictureName());
+                $article->savePicture();
                 $pictureName = "article" . $article->id() . ".jpg";
                 $articleManager->updatePictureName($article->id(),$pictureName);
             } 

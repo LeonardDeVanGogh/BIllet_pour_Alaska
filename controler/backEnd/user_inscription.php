@@ -17,7 +17,6 @@ $userExist = $userManager->readUser($email);
 
 
 if ($user!='' && $email!='' && $password!='' && $passwordConfirmation!=''){
-	$userManager = new UserManager($dbh);
 	$userExist = $userManager->readUser($email);
 	if ($userExist->rowCount()==0){
 		if ($password === $passwordConfirmation){

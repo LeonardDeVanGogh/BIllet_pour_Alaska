@@ -47,7 +47,7 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 
   <?php
             
-    if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT))
+    if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>=1)
     {
       $manager = new ArticleManager($dbh);
       $nbArticles  = $manager->readOne($_GET['id_article']);
@@ -138,15 +138,18 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
       
       </div>
     </div>
+  <!-- Footer -->
+  <?php require_once('view/frontend/footer.php');?>    
   <?php
+    }else{
+      header("location:index.php?page=home");
     } ?>
 
 
 
   <hr>
 
-  <!-- Footer -->
-  <?php require_once('view/frontend/footer.php');?>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

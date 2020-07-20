@@ -8,14 +8,14 @@ spl_autoload_register('chargerClasse');
 
   require_once('controler/frontend/protect_access.php');
   if (isset($permission)){
-    if($permission->article_add()==1 OR $permission->article_update()==1){
+    if(($permission->article_add()==1 && $_GET['id_article']==0) OR ($permission->article_update()==1 && $_GET['id_article']!=0)){
 
 
   
 
       $articleManager = new ArticleManager($dbh);
 
-      if ( isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT)){                
+      if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT)){                
         $nbArticles  = $articleManager->readOne($_GET['id_article']);
         while($donnees = $nbArticles->fetch()) {
             $article = new Article($donnees);
@@ -103,7 +103,7 @@ spl_autoload_register('chargerClasse');
       <div class="form-group">
         <button role="button" class="btn btn-primary" type="submit" id="billet">
           <i class="far fa-envelope"></i>
-          <span> Add / Update</span>
+          <span> Publier</span>
         </button>
       </div>
     </form>
@@ -123,7 +123,7 @@ spl_autoload_register('chargerClasse');
  
 <?php
       
-    }
-  }else{
+    }else{
     header("Location:index.php?page=home");
+  }
   }
