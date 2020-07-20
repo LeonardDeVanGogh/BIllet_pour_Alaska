@@ -130,6 +130,13 @@
         </form>
       </div>
     </div>
+    <div class="row">
+      <a class="col-lg-3 mx-auto buttonColorDelete" href="index.php?page=user_delete&user_id=<?= $user->id() ?>" id="userDeleteButton">
+        <i class="fas fa-times-circle"></i>
+        <span> Effacer mon compte</span>
+      </a>
+
+    </div>
   </div>
   
   <!-- Footer -->    

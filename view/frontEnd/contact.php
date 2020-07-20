@@ -1,6 +1,11 @@
 
 <?php
   defined("_Can_access_") or die("Inclusion directe non autorisée");
+
+  $database = new Database();
+  $dbh = $database->getConnection();
+
+  require_once('controler/frontend/protect_access.php');
 ?>
 
 <!DOCTYPE html>

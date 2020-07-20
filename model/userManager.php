@@ -32,6 +32,14 @@ class UserManager
             ));
 		return $req;
 	}
+	public function readUserById($id)
+	{
+		$req = $this->_dbh->prepare("SELECT * FROM users WHERE id = :id");
+        $req->execute(array(
+            'id' => $id,
+            ));
+		return $req;
+	}
 
 	public function emailOccurrence($email)
 	{

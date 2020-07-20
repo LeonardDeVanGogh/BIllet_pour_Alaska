@@ -41,19 +41,19 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		}
 		public function userConnection()
 		{
-			require("controler/backend/user_connection.php");
+			require("controler/frontend/user_connection.php");
 		}		
 		public function userDisconnection()
 		{
-			require("controler/backend/user_disconnection.php");
+			require("controler/frontend/user_disconnection.php");
 		}
 		public function report_comment()
 		{
-			require("controler/backend/report_comment.php");
+			require("controler/frontend/report_comment.php");
 		}
 		public function userDelete()
 		{
-			require("controler/backend/user_delete.php");
+			require("controler/frontend/user_delete.php");
 		}
 	}
 
