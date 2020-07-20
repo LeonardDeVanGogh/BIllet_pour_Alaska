@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('error_reporting', E_ALL);
 
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
@@ -44,13 +42,13 @@ if (isset($permission)){
         while($donnees = $users->fetch()) {
           $user = new User($donnees);
           ?>
-          <div class="row">
-            <div class="col-lg-9">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
               <?= $user->user() ?>
             </div>
             <?php if($permission->user_rank_update()==1){ ?>
-              <div class="col-lg-2">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <div class="col-lg-3">
+                <button class="btn btn-default dropdown-toggle buttonColorUpdate" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <?= $user->rank() ?>
                   <span class="caret"></span>
                 </button>
@@ -62,7 +60,7 @@ if (isset($permission)){
               </div>
             <?php }
             if($permission->user_delete()==1){ ?>
-              <a class="col-lg-1 fas fa-times-circle" href="index.php?page=user_delete&user_id=<?= $user->id() ?>"></a>
+              <a class="col-lg-1 fas fa-times-circle fa-2x" href="index.php?page=user_delete&user_id=<?= $user->id() ?>" title="supprimer compte"></a>
             <?php } ?>
           </div>
           <hr>   

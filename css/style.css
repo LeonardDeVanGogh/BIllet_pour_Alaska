@@ -38,7 +38,7 @@ form{
 }
 .navWithoutPicture
 {
-	margin-top:3em;
+	margin-top:3.5em;
 }
 .addArticle
 {
@@ -130,7 +130,7 @@ form{
 	color:#AB6A02;
 	text-decoration:none;
 }
-#userDeleteButton:hover
+#userRankUpdate
 {
 	
 }
