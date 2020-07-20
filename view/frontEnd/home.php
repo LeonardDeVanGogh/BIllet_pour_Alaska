@@ -41,7 +41,7 @@
 <?php require_once('view/frontend/entete.php');?>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/home-background.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -76,22 +76,23 @@
             $nbArticles  = $manager->readAll();
             while($donnees = $nbArticles->fetch())
             {
-                $article = new Article($donnees);?>
-                    <div class="post-preview">
-                      <a href="index.php?page=billet&id_article=<?= $article->id()?> ">
-                        <h2 class="post-title">
-                          <?=  $article->title() ?>
-                        </h2>
-                        <h3 class="post-subtitle">
-                          <?= $article->description() ?>
-                        </h3>
-                      </a>
-                      <p class="post-meta">Posted by
-                        <a href="#"><?= $article->auteur() ?></a>
-                        on<?= $article->date_article() ?></p>
-                    </div>
-                    <hr>
-                <?php
+              $article = new Article($donnees);
+              ?>
+                <div class="post-preview">
+                  <a href="index.php?page=billet&id_article=<?= $article->id()?> ">
+                    <h2 class="post-title">
+                      <?=  $article->title() ?>
+                    </h2>
+                    <h3 class="post-subtitle">
+                      <?= $article->description() ?>
+                    </h3>
+                  </a>
+                  <p class="post-meta">Posted by
+                    <a href="#"><?= $article->auteur() ?></a>
+                    on<?= $article->date_article() ?></p>
+                </div>
+                <hr>
+              <?php
             }
         ?>
 
