@@ -9,8 +9,15 @@ $database = new Database();
 $dbh = $database->getConnection();
 
 include('controler/frontend/protect_access.php');
-  if (isset($permission)){
-    if($permission->rank_update()==1){ 
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->rank_update()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
 ?>
 
@@ -37,9 +44,7 @@ include('controler/frontend/protect_access.php');
 <body>
   
   <!-- Navigation -->
-<?php require_once('view/frontend/entete.php');?>
-
-
+  <?php require_once('view/frontend/entete.php');?>
 
   <!-- Main Content -->
   <div class="container navWithoutPicture">
@@ -53,10 +58,7 @@ include('controler/frontend/protect_access.php');
       include('view/backend/rank_administration_form.php');
     ?>
               
-  </div>
-
-
-      
+  </div>      
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -72,9 +74,3 @@ include('controler/frontend/protect_access.php');
 </body> 
 
 </html>
-
-<?php 
-  }
-    }else{
-      header("Location:index.php");
-    }

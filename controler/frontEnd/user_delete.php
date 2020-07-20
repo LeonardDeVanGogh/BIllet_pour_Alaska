@@ -3,30 +3,33 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
 require_once('controler/frontend/protect_access.php');
-if (isset($permission)){
-	if($permission->user_delete()==1){
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->user_delete()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
-		$database = new Database();
-		$dbh = $database->getConnection();
+$database = new Database();
+$dbh = $database->getConnection();
 
-		$id = $_GET['user_id'];
+$id = $_GET['user_id'];
 
-		$userManager = new UserManager($dbh);
-		$userReaded = $userManager->readUserById($id);
+$userManager = new UserManager($dbh);
+$userReaded = $userManager->readUserById($id);
 
 
-		while ($donnees = $userReaded->fetch()){
-			$user = new User($donnees);
-		}
-		$userManager->deleteUser($id);
+while ($donnees = $userReaded->fetch()){
+	$user = new User($donnees);
+}
+$userManager->deleteUser($id);
 
-		if ($user->email()!= $_SESSION['userEmail']){
-			header("Location: index.php?page=user_administration");
-		}else{
-			session_destroy();
-			header("Location: index.php?page=home");
-		}
-    }   
-}else {
+if ($user->email()!= $_SESSION['userEmail']){
+	header("Location: index.php?page=user_administration");
+}else{
+	session_destroy();
 	header("Location: index.php?page=home");
 }

@@ -3,24 +3,29 @@
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
 
-  $database = new Database();
-  $dbh = $database->getConnection();
+$database = new Database();
+$dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');
-  if (isset($permission)){
-    if(($permission->article_add()==1 && $_GET['id_article']==0) OR ($permission->article_update()==1 && $_GET['id_article']!=0)){
+require_once('controler/frontend/protect_access.php');
 
+if(!isset($permission)){
+header("location:index.php?page=home");
+die();
+}else{
+  if(($permission->article_add()!=1 && $_GET['id_article']==0) OR ($permission->article_update()!=1 && $_GET['id_article']!=0)){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
-  
+$articleManager = new ArticleManager($dbh);
 
-      $articleManager = new ArticleManager($dbh);
-
-      if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT)){                
-        $nbArticles  = $articleManager->readOne($_GET['id_article']);
-        while($donnees = $nbArticles->fetch()) {
-            $article = new Article($donnees);
-          }
-      }
+if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDATE_INT)){                
+  $nbArticles  = $articleManager->readOne($_GET['id_article']);
+  while($donnees = $nbArticles->fetch()) {
+      $article = new Article($donnees);
+    }
+}
 
 ?>
 
@@ -120,10 +125,3 @@ spl_autoload_register('chargerClasse');
 </body>
 
 </html>
- 
-<?php
-      
-    }else{
-    header("Location:index.php?page=home");
-  }
-  }

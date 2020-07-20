@@ -1,16 +1,23 @@
 <?php  
-  defined("_Can_access_") or die("Inclusion directe non autorisée");
-  spl_autoload_register('chargerClasse');
 
-  $database = new Database();
-  $dbh = $database->getConnection();
+defined("_Can_access_") or die("Inclusion directe non autorisée");
+spl_autoload_register('chargerClasse');
 
-  require_once('controler/frontend/protect_access.php');
-  if (isset($permission)){
-    if($permission->comment_moderation()==1 OR $permission->comment_hidden()==1 OR $permission->comment_delete()==1 OR $permission->comment_validate()==1){
+$database = new Database();
+$dbh = $database->getConnection();
 
+require_once('controler/frontend/protect_access.php');
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->comment_moderation()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
-  $commentManager = new CommentManager($dbh);
+$commentManager = new CommentManager($dbh);
 
 ?>
 
@@ -83,8 +90,3 @@
 </body> 
 
 </html>
-<?php
-    }   
-  }else {
-    header("Location: index.php");
-  }

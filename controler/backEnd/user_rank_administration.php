@@ -5,14 +5,17 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
   require_once('controler/frontend/protect_access.php');
-  if (isset($permission)){
-    if($permission->rank_update()==1){
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->rank_update()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
-echo $_POST['rank'] . "<br/>";
 $rank = $_POST['rank'];
-
-
-
 $commentModeration = (!isset($_POST['comment_moderation'])) ? 0 : 1;
 $commentHidden = (!isset($_POST['comment_hidden'])) ? 0 : 1;
 $commentValidation = (!isset($_POST['comment_validation'])) ? 0 : 1;
@@ -29,7 +32,3 @@ $rankManager = new RankManager($dbh);
 $rankManager->rankUpdate($commentModeration,$commentValidation,$commentHidden,$commentDelete,$articleAdd,$articleUpdate,$articleDelete,$userAdministration,$userDelete,$userRankUpdate,$rankUpdate,$rank);
 
 header("Location: index.php?page=rank_administration");
-    }   
-  }else {
-    header("Location: index.php");
-  }

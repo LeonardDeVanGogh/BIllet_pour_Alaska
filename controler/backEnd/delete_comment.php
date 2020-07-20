@@ -6,8 +6,15 @@ $database = new Database();
 $dbh = $database->getConnection();
 require_once('controler/frontend/protect_access.php');
 
-if (isset($permission)){
-if($permission->comment_delete()==1){
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->user_delete()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 
 	$commentManager = new CommentManager($dbh);
 	$commentData  = $commentManager->readOneComment($_GET['comment_id']);
@@ -18,7 +25,3 @@ if($permission->comment_delete()==1){
 	}
 
 	header("Location: index.php?page=billet&id_article=" . filter_var($_GET['id_article'], FILTER_VALIDATE_INT));   
-	}
-}else {
-header("Location: index.php");
-}

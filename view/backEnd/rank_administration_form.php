@@ -2,17 +2,20 @@
 
   defined("_Can_access_") or die("Inclusion directe non autorisée");
   include('controler/frontend/protect_access.php');
-  if (isset($permission)){
-    if($permission->rank_update()==1){ 
-
+if(!isset($permission)){
+  header("location:index.php?page=home");
+  die();
+}else{
+  if($permission->rank_update()!=1){
+    header("location:index.php?page=home");
+    die();
+  }
+}
 ?>
-
-
-<?php echo '
-  <div class="row">
-    <h3 class="col-lg-3">' . $rank . '</h3>
-  </div>'  
-?>
+ 
+<div class="row">
+  <h3 class="col-lg-3"> <?= $rank . ?></h3>
+</div>
 
 <form name="userAdministration" method="post" action="index.php?page=user_rank_administration">
   <div class="control-group">
@@ -48,8 +51,3 @@
     </div>
   </div>
 </form>
-<?php 
-  }
-    }else{
-      header("Location:/index.php");
-    }

@@ -119,8 +119,4 @@ class Rank extends User
     {
         $this->_user_rank_update = $user_rank_update;
     }
-
-
-
-
 }
