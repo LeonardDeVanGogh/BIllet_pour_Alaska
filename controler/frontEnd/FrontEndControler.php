@@ -19,10 +19,6 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		{
 			require('view/frontend/inscription.php');
 		}
-		public function publications()
-		{
-			require('view/frontend/publications.php');
-		}
 		public function session()
 		{
 			require('view/frontend/session.php');
@@ -33,7 +29,31 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		}
 		public function userInfosUpdate()
 		{
-			require('controler/frontend/userInfosUpdate.php');
+			require('controler/frontend/user_infos_update.php');
+		}
+		public function addComment()
+		{
+			require("controler/frontend/add_comment.php");
+		}
+		public function userInscription()
+		{
+			require("controler/frontend/user_inscription.php");
+		}
+		public function userConnection()
+		{
+			require("controler/backend/user_connection.php");
+		}		
+		public function userDisconnection()
+		{
+			require("controler/backend/user_disconnection.php");
+		}
+		public function report_comment()
+		{
+			require("controler/backend/report_comment.php");
+		}
+		public function userDelete()
+		{
+			require("controler/backend/user_delete.php");
 		}
 	}
 

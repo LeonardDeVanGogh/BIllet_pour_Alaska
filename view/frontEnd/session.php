@@ -47,7 +47,7 @@
   <div class="container navWithoutPicture">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form name="userNameUpdate" id="userNameUpdate" method="post" action="index.php?page=userInfosUpdate&what=userNameUpdate" novalidate>
+        <form name="userNameUpdate" id="userNameUpdate" method="post" action="index.php?page=user_infos_update&what=userNameUpdate" novalidate>
           <div class="control-group">
             <div class="form-group controls">
               <label>Modifier pseudonyme</label>
@@ -72,7 +72,7 @@
     ?>
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form name="userEmailUpdate" id="userEmailUpdate" method="post" action="index.php?page=userInfosUpdate&what=userEmailUpdate" novalidate>
+        <form name="userEmailUpdate" id="userEmailUpdate" method="post" action="index.php?page=user_infos_update&what=userEmailUpdate" novalidate>
           <div class="control-group">
             <div class="form-group controls">
               <label>Modifier email</label>
@@ -100,13 +100,12 @@
           <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto colorWrong">Erreur</div>
           </div>
-      <?php 
-        }         
+        <?php }         
       } ?>
            
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form name="userPasswordUpdate" id="userPasswordUpdate" method="post" action="index.php?page=userInfosUpdate&what=userPasswordUpdate" novalidate>
+        <form name="userPasswordUpdate" id="userPasswordUpdate" method="post" action="index.php?page=user_infos_update&what=userPasswordUpdate" novalidate>
           <div class="control-group">
             <div class="form-group controls">
               <label>Mot de passe actuel</label>

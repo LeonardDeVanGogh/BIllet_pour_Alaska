@@ -48,7 +48,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <?php echo (isset($_GET['infos']))? '<div class="row"><div class="col-lg-10 text-center colorWrong">tous les champs doivent être complétés</div></div>':'';?>
-        <form name="userConnectionForm" id="userConnectionFrom" method="post" action="index.php?page=userConnection" novalidate>
+        <form name="userConnectionForm" id="userConnectionFrom" method="post" action="index.php?page=user_connection" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Quel est votre nom utilisateur?</label>

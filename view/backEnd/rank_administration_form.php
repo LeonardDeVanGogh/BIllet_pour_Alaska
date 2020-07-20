@@ -14,7 +14,7 @@
   </div>'  
 ?>
 
-<form name="userAdministration" method="post" action="index.php?page=userRankAdministration">
+<form name="userAdministration" method="post" action="index.php?page=user_rank_administration">
   <div class="control-group">
     <div class="form-group controls">
       <?php 

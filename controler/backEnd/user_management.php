@@ -16,7 +16,7 @@ $userManager = new UserManager($dbh);
 
 $userManager->updateUserRank($id,$rank);
 
-header("Location: index.php?page=userAdministration");
+header("Location: index.php?page=user_administration");
 
     }   
   }else {

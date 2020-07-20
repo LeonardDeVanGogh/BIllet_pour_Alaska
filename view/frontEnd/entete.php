@@ -26,23 +26,24 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php if (isset($permission) && $permission->rank_update()==1){ ?>
-                    <a class="dropdown-item" href="index.php?page=rankAdministration">Droits D'accès</a>
-                  <?php }
-                  if (isset($permission) && $permission->user_administration()==1){ ?>
-                    <a class="dropdown-item" href="index.php?page=userAdministration">Gestion Utilisateurs</a>
+                    <a class="dropdown-item" href="index.php?page=rank_administration">Droits D'accès</a>
                   <?php } ?>
                 </div>
               </li>
+            <?php }
 
-          <?php 
-            }
             if (isset($_SESSION['userRank']) && ($_SESSION['userRank']=="moderator" OR $_SESSION['userRank']=="administrator")){ ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Modération
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="index.php?page=commentModeration">Commentaires</a>
+                  <?php if (isset($permission) && $permission->user_administration()==1){ ?>
+                    <a class="dropdown-item" href="index.php?page=user_administration">Gestion Utilisateurs</a>
+                  <?php }
+                      if (isset($permission) && $permission->comment_moderation()==1){ ?>
+                    <a class="dropdown-item" href="index.php?page=comment_moderation">Commentaires</a>
+                  <?php } ?>
                 </div>
               </li> 
           <?php 
@@ -52,7 +53,7 @@
                 <a class="nav-link" href="index.php?page=session">Mon Espace</a>
               </li>
               <li class="nav-item">                     
-                <a class="nav-link" title="Déconnexion" href="index.php?page=userDisconnection">
+                <a class="nav-link" title="Déconnexion" href="index.php?page=user_disconnection">
                   <span class="fas fa-2x fa-sign-out-alt"></span>
                 </a>
               </li>

@@ -2,18 +2,6 @@
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 	class BackEndControler
 	{
-		public function administration()
-		{
-			require("view/backend/administration.php");
-		}
-		public function report_comment()
-		{
-			require("controler/backend/report_comment.php");
-		}
-		public function addComment()
-		{
-			require("controler/backend/addComment.php");
-		}
 		public function deleteComment()
 		{
 			require("controler/backend/delete_comment.php");
@@ -33,19 +21,7 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		public function deleteArticle()
 		{
 			require("controler/backend/delete_article.php");
-		}
-		public function userConnection()
-		{
-			require("controler/backend/user_connection.php");
-		}
-		public function userInscription()
-		{
-			require("controler/backend/user_inscription.php");
-		}
-		public function userDisconnection()
-		{
-			require("controler/backend/user_disconnection.php");
-		}
+		}		
 		public function rankAdministration()
 		{
 			require("view/backend/rank_administration.php");
@@ -61,11 +37,7 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		public function userManagement()
 		{
 			require("controler/backend/user_management.php");
-		}
-		public function userDelete()
-		{
-			require("controler/backend/user_delete.php");
-		}
+		}		
 		public function commentModeration()
 		{
 			require("view/backend/comment_moderation.php");
@@ -74,8 +46,6 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		{
 			require("controler/backend/validate_comment.php");
 		}
-
-
 		
 	}
 

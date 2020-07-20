@@ -1,14 +1,14 @@
 <?php
 
-  ini_set('display_errors', '1');
-  ini_set('error_reporting', E_ALL);
+ini_set('display_errors', '1');
+ini_set('error_reporting', E_ALL);
 defined("_Can_access_") or die("Inclusion directe non autorisée");
-  spl_autoload_register('chargerClasse');
+spl_autoload_register('chargerClasse');
 
-  $database = new Database();
-  $dbh = $database->getConnection();
+$database = new Database();
+$dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');
+require_once('controler/frontend/protect_access.php');
 
 ?>
 
@@ -41,57 +41,55 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 <body>
 
   <!-- Navigation -->
-  <?php require_once('view/frontend/entete.php');?>
+  <?php 
+  require_once('view/frontend/entete.php');
 
+  if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>=1)
+  {
+    $manager = new ArticleManager($dbh);
+    $nbArticles  = $manager->readOne($_GET['id_article']);
 
+    while($donnees = $nbArticles->fetch()) {
 
-  <?php
-            
-    if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>=1)
-    {
-      $manager = new ArticleManager($dbh);
-      $nbArticles  = $manager->readOne($_GET['id_article']);
-
-      while($donnees = $nbArticles->fetch()) {
-
-        $article = new Article($donnees); ?>
-        <!-- Page Header -->
-        <header class="masthead" style="background-image: url('img/<?= $article->pictureName() ?>')">
-          <div class="overlay"></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-heading">
-                  <h1><?= $article->title() ?></h1>
-                  <h2 class="subheading"><?= $article->description() ?></h2>
-                  <span class="meta">Posted by
-                    <a href="#"><?= $article->auteur() ?></a>
-                    on <?= $article->date_article() ?></span>
+      $article = new Article($donnees); ?>
+      <!-- Page Header -->
+      <header class="masthead" style="background-image: url('img/<?= $article->pictureName() ?>')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-heading">
+                <h1><?= $article->title() ?></h1>
+                <h2 class="subheading"><?= $article->description() ?></h2>
+                <span class="meta">Posted by
+                  <a href="#"><?= $article->auteur() ?></a>
+                  on <?= $article->date_article() ?></span>
                 </div>
               </div>
             </div>
           </div>
         </header>
 
+        <!-- Article Dashboard -->
         <div class="container">
           <div class="row justify-content-center col-lg-8 mx-auto">
             <?php if (isset($permission) && $permission->article_update()==1){ ?>
-                <a role="button" class="col-lg-4 controls text-center align-middle buttonColorUpdate" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=<?= $article->id() ?>">
-                  <i class="fas fa-edit fa-1x"></i>
-                  <span>Editer Article</span>
-                </a>
+            <a role="button" class="col-lg-4 controls text-center align-middle buttonColorUpdate" aria-haspopup="true" aria-expanded="false" title="update article" href="index.php?page=manage_billet&id_article=<?= $article->id() ?>">
+              <i class="fas fa-edit fa-1x"></i>
+              <span>Editer Article</span>
+            </a>
             <?php }
             if (isset($permission) && $permission->article_delete()==1){ ?>
-              <a role="button" class="col-lg-4 controls text-center buttonColorDelete" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=<?= $article->id() ?>">
-                <i class="fas fa-times-circle fa-1x"></i>
-                <span>Effacer Article</span>
-              </a>
+            <a role="button" class="col-lg-4 controls text-center buttonColorDelete" aria-haspopup="true" aria-expanded="false" title="supprimer article" href="index.php?page=delete_article&id_article=<?= $article->id() ?>">
+              <i class="fas fa-times-circle fa-1x"></i>
+              <span>Effacer Article</span>
+            </a>
             <?php } ?>
 
           </div>
         </div>
 
-        <!-- Post Content -->
+        <!-- Article Content -->
         <article>
           <div class="container article">                
             <div class="row">
@@ -101,21 +99,22 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
             </div>
           </div>
         </article>';
-          
-    <?php
+
+        <?php
       } ?>
 
+      <!-- Add Comment -->
       <div class="container">
         <div class="row col-lg-12 justify-content-center">
-          <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=addComment" novalidate>
+          <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=add_comment" novalidate>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label></label>
                 <input type="textarea" class="form-control" name="addComment" placeHolder="écrivez votre commentaire ici" required data-validation-required-message="merci d'écrire votre commentaire">
                 <p class="help-block text-danger"></p>
               </div>
-                <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
-              </div>
+              <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
+            </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary" id="sendCommentButton">
                 <i class="fas fa-envelope"></i>
@@ -126,8 +125,8 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
         </div>
       </div>
 
+      <!-- Comments -->
       <div class="container" style="background-image: url('img/comment-background.jpg')">
-    
         <?php
         $commentManager = new CommentManager($dbh);
         $idArticle = $_GET['id_article'];
@@ -135,21 +134,17 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
         while ($donnees = $nbComments->fetch()){
           include('view/frontend/comment.php');
         }?>
-      
+
       </div>
     </div>
-  <!-- Footer -->
-  <?php require_once('view/frontend/footer.php');?>    
-  <?php
-    }else{
-      header("location:index.php?page=home");
-    } ?>
-
-
+    <!-- Footer -->
+    <?php require_once('view/frontend/footer.php');?>    
+    <?php
+  }else{
+    header("location:index.php?page=home");
+  } ?>
 
   <hr>
-
-
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -15,7 +15,7 @@ $userManager = new UserManager($dbh);
 
 $userManager->deleteUser($id);
 
-header("Location: index.php?page=userAdministration");
+header("Location: index.php?page=user_administration");
 
     }   
   }else {

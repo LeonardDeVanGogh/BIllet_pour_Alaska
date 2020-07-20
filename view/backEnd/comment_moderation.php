@@ -1,7 +1,4 @@
-<?php
-  ini_set('display_errors', '1');
-  ini_set('error_reporting', E_ALL);
-  
+<?php  
   defined("_Can_access_") or die("Inclusion directe non autorisée");
   spl_autoload_register('chargerClasse');
 
@@ -40,11 +37,25 @@
 <body>
   
   <!-- Navigation -->
-<?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontend/entete.php');?>
 
   <!-- Main Content -->
   <div class="container navWithoutPicture">
-  <?php 
+  <div class="row">
+    <div class="col-lg-4">
+      <i class="fas fa-check"></i>
+      <span>: le commentaire reste </span>
+    </div>
+    <div class="col-lg-4">
+      <i class="fas fa-ban"></i>
+      <span>: ban</span>
+    </div>
+    <div class="col-lg-4">
+      <i class="fas fa-times-circle"></i>
+      <span>: effacer</span>
+    </div>
+  </div>  
+  <?php
     $reports = $commentManager->readForModeration();
     while($donnees = $reports->fetch()){
       $idArticle = $donnees['id_article']; ?>

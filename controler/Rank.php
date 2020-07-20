@@ -3,14 +3,16 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 class Rank extends User
 {
     protected $_comment_moderation;
+    protected $_comment_validation;
     protected $_comment_hidden;
     protected $_comment_delete;
     protected $_article_add;
     protected $_article_update;
     protected $_article_delete;
     protected $_user_administration;
-    protected $_rank_update;
+    protected $_user_delete;
     protected $_user_rank_update;
+    protected $_rank_update;
 
     public function hydrate(array $donnees){
         foreach($donnees as $key => $value){
@@ -30,6 +32,10 @@ class Rank extends User
     public function comment_moderation()
     {
     	return $this->_comment_moderation;
+    }
+    public function comment_validation()
+    {
+        return $this->_comment_validation;
     }
     public function comment_hidden()
     {
@@ -55,19 +61,27 @@ class Rank extends User
     {
         return $this->_rank_update;
     }
-    public function user_rank_update()
+    public function user_delete()
     {
-        return $this->_user_rank_update;
+        return $this->_user_delete;
     }
     public function user_administration()
     {
         return $this->_user_administration;
+    }
+    public function user_rank_update()
+    {
+        return $this->_user_rank_update;
     }
 
 
     public function setComment_moderation($comment_moderation)
     {
     	$this->_comment_moderation = $comment_moderation;
+    }
+    public function setComment_validation($comment_validation)
+    {
+        $this->_comment_validation = $comment_validation;
     }
     public function setComment_hidden($comment_hidden)
     {
@@ -93,13 +107,17 @@ class Rank extends User
     {
         $this->_rank_update = $rank_update;
     }
-    public function setUser_rank_update($user_rank_update)
+    public function setUser_delete($user_delete)
     {
-        $this->_user_rank_update = $user_rank_update;
+        $this->_user_delete = $user_delete;
     }
     public function setUser_administration($user_administration)
     {
         $this->_user_administration = $user_administration;
+    }
+    public function setUser_rank_update($user_rank_update)
+    {
+        $this->_user_rank_update = $user_rank_update;
     }
 
 
