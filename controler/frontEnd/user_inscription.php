@@ -20,6 +20,7 @@ if ($user!='' && $email!='' && $password!='' && $passwordConfirmation!=''){
 	$userExist = $userManager->readUser($email);
 	if ($userExist->rowCount()==0){
 		if ($password === $passwordConfirmation){
+			$password = password_hash($_POST['userPasswordInscription'], PASSWORD_DEFAULT);
 			$userManager->createUser($user, $email, $password);
 			header("Location: index.php?page=login&email=" . $email);
 		}else{

@@ -1,12 +1,12 @@
 <?php
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 spl_autoload_register('chargerClasse');
-  require_once('controler/frontend/protect_access.php');
+require_once('controler/frontend/protect_access.php');
 if(!isset($permission)){
-  header("location:index.php?page=home");
-  die();
+	header("location:index.php?page=home");
+	die();
 }
- 
+
 
 $database = new Database();
 $dbh = $database->getConnection();
@@ -46,17 +46,18 @@ if ($role=="userEmailUpdate"){
 			$_SESSION['userEmail'] = $_POST['userEmail'];
 			header("location:index.php?page=session&email=" . $_POST['userEmail']);	
 		}else{
-		header("location:index.php?page=session&emailAlreadyUsed=true");
+			header("location:index.php?page=session&emailAlreadyUsed=true");
 		}
 	}		
-		
+
 }
 
 if ($role=="userPasswordUpdate"){
 	if($_POST['actualPassword']!="" && $_POST['newPassword']!="" && $_POST['newPassword']===$_POST['newPasswordCheck']){
-		echo 'tout va bien';
-		$userManager->updatePassword($user->id(),$_POST['newPasswordCheck']);
+		$password = password_hash($_POST['newPasswordCheck'], PASSWORD_DEFAULT);
+		$userManager->updatePassword($user->id(),$password);
 		header("location:index.php?page=session&passwordUpdated=true");
 	}else{
 		header("location:index.php?page=session&passwordUpdated=false");
 	}
+}

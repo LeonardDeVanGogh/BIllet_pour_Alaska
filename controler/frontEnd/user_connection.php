@@ -15,7 +15,7 @@ if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
 	if($thisUser->rowcount()!==0)
 	{
 		while($donnees = $thisUser->fetch()){
-			if ($donnees['password']===$_POST['passwordLogin']){
+			if (password_verify($_POST['passwordLogin'], $donnees['password'])){
 				$user = new User($donnees);
 				$_SESSION['userId'] = $user->id();
 				$_SESSION['userEmail'] = $user->email();

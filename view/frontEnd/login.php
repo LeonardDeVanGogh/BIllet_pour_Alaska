@@ -52,7 +52,7 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Quel est votre nom utilisateur?</label>
-              <?php echo '<input type="text" class="form-control" name="userEmail" id="userEmail" placeHolder="email" value="' . $email . '">';?>
+              <?php echo '<input type="text" class="form-control" name="userEmail" id="userEmail" placeHolder="email" value="' . $email . '" autofocus>';?>
               <p class="help-block text-danger"></p>
             </div>
           </div>

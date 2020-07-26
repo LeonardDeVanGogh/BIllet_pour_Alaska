@@ -55,7 +55,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Quel pseudonyme desirez-vous?</label>
-                <?php echo '<input type="text" class="form-control" placeholder="Pseudonyme" name="userInscription" id="userInscription" required data-validation-required-message="Please enter your pseudonyme." value="' . $user . '">';?>
+                <?php echo '<input type="text" class="form-control" placeholder="Pseudonyme" name="userInscription" id="userInscription" required data-validation-required-message="Please enter your pseudonyme." value="' . $user . '" autofocus>';?>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
