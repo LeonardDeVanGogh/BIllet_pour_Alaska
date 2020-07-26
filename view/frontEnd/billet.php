@@ -60,7 +60,7 @@ require_once('controler/frontend/protect_access.php');
                 <h1><?= $article->title() ?></h1>
                 <h2 class="subheading"><?= $article->description() ?></h2>
                 <span class="meta">Posted by
-                  <a href="#"><?= $article->auteur() ?></a>
+                  <a href="#"><?= $article->user() ?></a>
                   on <?= $article->date_article() ?></span>
                 </div>
               </div>

@@ -21,7 +21,7 @@ $articleTitle =  $_POST['articleTitle'];
 $articleDescription = $_POST['articleDescription'];
 $articleBody = $_POST['articleBody'];
 $articleId =  $_POST['articleId'];
-$userName= isset($_SESSION['userName'])?$_SESSION['userName']:"";
+$userName= isset($_SESSION['userId'])?$_SESSION['userId']:"";
 
 $articleManager = new articleManager($dbh);
 

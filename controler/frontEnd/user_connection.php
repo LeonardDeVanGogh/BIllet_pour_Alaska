@@ -17,6 +17,7 @@ if ($_POST['userEmail']!='' && $_POST['passwordLogin']!='')
 		while($donnees = $thisUser->fetch()){
 			if ($donnees['password']===$_POST['passwordLogin']){
 				$user = new User($donnees);
+				$_SESSION['userId'] = $user->id();
 				$_SESSION['userEmail'] = $user->email();
 				$_SESSION['userRank'] = $user->rank();
 				header("Location: index.php?page=home");

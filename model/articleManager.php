@@ -15,14 +15,13 @@ class ArticleManager
     }
 
     public function readAll()
-    {
-        $req =  $this->_dbh->query("SELECT id, title, article, description, date_article, auteur, picture_name FROM article ORDER BY id DESC");
+    {    
+        $req = $this->_dbh->query("SELECT a.id AS id, a.title, a.article, a.description, a.date_article, a.auteur, a.picture_name, u.id AS user_id, u.user FROM article a LEFT JOIN users u ON a.auteur = u.id ORDER BY a.id DESC");
         return $req;
-
     }
     public function readOne($id)
     {
-        $req = $this->_dbh->prepare("SELECT id, title, description, article, date_article, auteur, picture_name FROM article WHERE id = :id");
+        $req = $this->_dbh->prepare("SELECT a.id AS id, a.title, a.description, a.article, a.date_article, a.auteur, a.picture_name, u.id AS user_id, u.user FROM article a LEFT JOIN users u ON a.auteur = u.id WHERE a.id = :id");
         $req->execute(array(
             'id' => $id,
             ));

@@ -88,8 +88,8 @@
                     </h3>
                   </a>
                   <p class="post-meta">Posted by
-                    <a href="#"><?= $article->auteur() ?></a>
-                    on<?= $article->date_article() ?></p>
+                    <a href="#"><?= $article->user() ?></a>
+                    on <?= $article->date_article() ?></p>
                 </div>
                 <hr>
               <?php

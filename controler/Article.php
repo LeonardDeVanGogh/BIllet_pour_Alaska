@@ -8,7 +8,7 @@ class Article
     protected $_description;
     protected $_article;
     protected $_date_article;
-    protected $_auteur;
+    protected $_user;
     protected $_picture_name;
 
     public function hydrate(array $donnees){
@@ -47,9 +47,9 @@ class Article
     {
         return $this->_date_article;
     }
-    public function auteur()
+    public function user()
     {
-        return $this->_auteur;
+        return $this->_user;
     }
     public function pictureName()
     {
@@ -76,9 +76,9 @@ class Article
     {
         $this->_date_article = $date_article;
     }
-    public function setAuteur($auteur)
+    public function setUser($user)
     {
-        $this->_auteur = $auteur;
+        $this->_user = $user;
     }
     public function setPicture_name($pictureName)
     {
