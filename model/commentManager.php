@@ -60,9 +60,13 @@ class CommentManager
     }
     public function deleteComment($id_comment)
     {
-        $req= $this->_dbh->prepare("DELETE FROM comment WHERE id= :id");
+        $req=$this->_dbh->prepare("DELETE FROM comment WHERE id= :id");
             $req->execute(array(
             'id' => $id_comment,
+        ));
+        $req=$this->_dbh->prepare("DELETE FROM reports WHERE id_comment= :id_comment");
+            $req->execute(array(
+            'id_comment' => $id_comment,
         ));
     }
     public function validateComment($idComment)

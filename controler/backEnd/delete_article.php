@@ -22,6 +22,12 @@ $oneArticle = $articleManager->readOne($articleId);
 while($donnees = $oneArticle->fetch()) {
   $article = new Article($donnees);
   unlink('img/' . $article->pictureName());
+  $commentManager = new CommentManager($dbh);
+  $readComment = $commentManager->readComment($_GET['id_article']);
+  while($donneesComment = $readComment->fetch()){
+  	$comment = new Comment($donneesComment);
+  	$commentManager->deleteComment($comment->id());
+  }
 } 
 $articleManager->deleteArticle($articleId);
 
