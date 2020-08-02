@@ -14,7 +14,7 @@ if(!isset($permission)){
 ?>
  
 <div class="row">
-  <h3 class="col-lg-3"> <?= $rank . ?></h3>
+  <h3 class="col-lg-3"> <?= $rank ?></h3>
 </div>
 
 <form name="userAdministration" method="post" action="index.php?page=user_rank_administration">

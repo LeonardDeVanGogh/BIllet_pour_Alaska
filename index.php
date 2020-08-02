@@ -122,7 +122,8 @@ if (isset($_GET['page']))
     if($_GET['page']=="user_rank_administration")
     {
         $backEndControler->userRankAdministration();
-    }        
+    }
+            
 }else{
     $frontEndControler->home();
 }

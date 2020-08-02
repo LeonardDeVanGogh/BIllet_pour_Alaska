@@ -16,7 +16,7 @@ class CommentManager
 
     public function readComment($idArticle)
     {
-        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report, moderated, validated, hidden FROM comment WHERE id_article = :id_article AND hidden <> '1'  ORDER BY id DESC");
+        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report, moderated, validated FROM comment WHERE id_article = :id_article ORDER BY id DESC");
         $req->execute(array(
             'id_article' => $idArticle,
             ));
@@ -32,7 +32,7 @@ class CommentManager
     }
     public function readForModeration()
     {
-        $req = $this->_dbh->prepare("SELECT r.id, r.id_comment, r.report_reason, c.id, c.id_article, c.comment, c.moderated, c.report, c.hidden FROM reports r INNER JOIN comment c ON r.id_comment = c.id WHERE c.moderated = :moderated ORDER BY date_comment");
+        $req = $this->_dbh->prepare("SELECT r.id, r.id_comment, r.report_reason, c.id, c.id_article, c.comment, c.moderated, c.report FROM reports r INNER JOIN comment c ON r.id_comment = c.id WHERE c.moderated = :moderated ORDER BY date_comment");
         $req->execute(array(
             'moderated' => 0,
             ));
@@ -63,15 +63,6 @@ class CommentManager
         $req= $this->_dbh->prepare("DELETE FROM comment WHERE id= :id");
             $req->execute(array(
             'id' => $id_comment,
-        ));
-    }
-    public function hideComment($idComment)
-    {
-        $req= $this->_dbh->prepare("UPDATE comment SET moderated = :moderated, hidden = :hidden WHERE id= :id");
-            $req->execute(array(
-            'hidden' => 1,
-            'moderated' => 1,    
-            'id' => $idComment,
         ));
     }
     public function validateComment($idComment)

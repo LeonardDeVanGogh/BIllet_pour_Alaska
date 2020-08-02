@@ -4,7 +4,6 @@ class Rank extends User
 {
     protected $_comment_moderation;
     protected $_comment_validation;
-    protected $_comment_hidden;
     protected $_comment_delete;
     protected $_article_add;
     protected $_article_update;
@@ -36,10 +35,6 @@ class Rank extends User
     public function comment_validation()
     {
         return $this->_comment_validation;
-    }
-    public function comment_hidden()
-    {
-        return $this->_comment_hidden;
     }
     public function comment_delete()
     {
@@ -82,10 +77,6 @@ class Rank extends User
     public function setComment_validation($comment_validation)
     {
         $this->_comment_validation = $comment_validation;
-    }
-    public function setComment_hidden($comment_hidden)
-    {
-        $this->_comment_hidden = $comment_hidden;
     }
     public function setComment_delete($comment_delete)
     {

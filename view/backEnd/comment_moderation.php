@@ -48,20 +48,6 @@ $commentManager = new CommentManager($dbh);
 
   <!-- Main Content -->
   <div class="container navWithoutPicture">
-  <div class="row">
-    <div class="col-lg-4">
-      <i class="fas fa-check"></i>
-      <span>: le commentaire reste </span>
-    </div>
-    <div class="col-lg-4">
-      <i class="fas fa-ban"></i>
-      <span>: ban</span>
-    </div>
-    <div class="col-lg-4">
-      <i class="fas fa-times-circle"></i>
-      <span>: effacer</span>
-    </div>
-  </div>  
   <?php
     $reports = $commentManager->readForModeration();
     while($donnees = $reports->fetch()){
