@@ -11,7 +11,7 @@ if (isset($permission)){
   if($_SESSION['userRank']=="moderator" OR $_SESSION['userRank']=="administrator"){ ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="fr">
 
     <head> 
       <meta charset="utf-8">

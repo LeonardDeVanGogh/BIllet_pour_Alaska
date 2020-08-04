@@ -30,7 +30,7 @@ if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDAT
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">

@@ -20,7 +20,7 @@ if(!isset($permission)){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head> 
   <meta charset="utf-8">
