@@ -5,7 +5,7 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
 
 if(!isset($permission)){
   header("location:index.php?page=home");
@@ -23,7 +23,7 @@ $articleBody = $_POST['articleBody'];
 $articleId =  $_POST['articleId'];
 $userName= isset($_SESSION['userId'])?$_SESSION['userId']:"";
 
-$articleManager = new articleManager($dbh);
+$articleManager = new ArticleManager($dbh);
 
 if ($articleId==0 && $permission->article_add()==1){
 	$articleManager->createArticle($articleTitle,$articleDescription,$articleBody,$userName);
@@ -41,9 +41,11 @@ if ($articleId==0 && $permission->article_add()==1){
 	 
 	while($donnees = $oneArticle->fetch()) {
       $article = new Article($donnees);
-      $article->savePicture();
-      $pictureName = "article" . $article->id() . ".jpg";
-      $articleManager->updatePictureName($article->id(),$pictureName);
+      if($article->pictureName()!="default.jpg"){
+        $article->savePicture();
+        $pictureName = "article" . $article->id() . ".jpg";
+        $articleManager->updatePictureName($article->id(),$pictureName);
+      }
   } 
 }
 

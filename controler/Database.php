@@ -2,9 +2,9 @@
 defined("_Can_access_") or die("Inclusion directe non autorisée");
 class Database
 {
-    const DB_HOST = 'mysql:host=localhost;dbname=billet_pour_l_alaska;charset=utf8';
-    const DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_HOST = 'mysql:host=db5000728484.hosting-data.io;dbname=dbs665344;charset=utf8';
+    const DB_USER = 'dbu854994';
+    const DB_PASS = '@WelcomeToMyNightmare2020';
 
     public function getConnection()
     {

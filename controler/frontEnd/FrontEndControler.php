@@ -5,55 +5,55 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 
 		public function home()
 		{
-			require('view/frontend/home.php');
+			require('view/frontEnd/home.php');
 		}
 		public function billet()
 		{
-			require('view/frontend/billet.php');
+			require('view/frontEnd/billet.php');
 		}
 		public function login()
 		{
-			require('view/frontend/login.php');
+			require('view/frontEnd/login.php');
 		}
 		public function inscription()
 		{
-			require('view/frontend/inscription.php');
+			require('view/frontEnd/inscription.php');
 		}
 		public function session()
 		{
-			require('view/frontend/session.php');
+			require('view/frontEnd/session.php');
 		}
 		public function contact()
 		{
-			require('view/frontend/contact.php');
+			require('view/frontEnd/contact.php');
 		}
 		public function userInfosUpdate()
 		{
-			require('controler/frontend/user_infos_update.php');
+			require('controler/frontEnd/user_infos_update.php');
 		}
 		public function addComment()
 		{
-			require("controler/frontend/add_comment.php");
+			require("controler/frontEnd/add_comment.php");
 		}
 		public function userInscription()
 		{
-			require("controler/frontend/user_inscription.php");
+			require("controler/frontEnd/user_inscription.php");
 		}
 		public function userConnection()
 		{
-			require("controler/frontend/user_connection.php");
+			require("controler/frontEnd/user_connection.php");
 		}		
 		public function userDisconnection()
 		{
-			require("controler/frontend/user_disconnection.php");
+			require("controler/frontEnd/user_disconnection.php");
 		}
 		public function report_comment()
 		{
-			require("controler/frontend/report_comment.php");
+			require("controler/frontEnd/report_comment.php");
 		}
 		public function userDelete()
 		{
-			require("controler/frontend/user_delete.php");
+			require("controler/frontEnd/user_delete.php");
 		}
 	}
 

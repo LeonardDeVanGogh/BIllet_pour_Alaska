@@ -5,7 +5,7 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');
+  require_once('controler/frontEnd/protect_access.php');
 if(!isset($permission)){
   header("location:index.php?page=home");
   die();

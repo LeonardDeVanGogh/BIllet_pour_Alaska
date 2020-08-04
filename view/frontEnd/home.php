@@ -5,10 +5,8 @@
   $database = new Database();
   $dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');  
+  require_once('controler/frontEnd/protect_access.php');  
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +17,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta property="og:title" content="Billet pour l'Alaska" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.billetpourlalaska.com" />
+  <meta property="og:image" content="http://www.billetpourlalaska.com/img/home-background.jpg" />
+  <meta property="og:site_name" content="http://www.billetpourlalaska.com" />
 
-  <title>Clean Blog - Start Bootstrap Theme</title>
+  <title>Billet pour l'Alaska</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +41,7 @@
 
 <body>
 
-<?php require_once('view/frontend/entete.php');?>
+<?php require_once('view/frontEnd/entete.php');?>
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('img/home-background.jpg')">
@@ -107,7 +110,7 @@
   <hr>
 
   <!-- Footer -->
-  <?php require_once('view/frontend/footer.php');?>
+  <?php require_once('view/frontEnd/footer.php');?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

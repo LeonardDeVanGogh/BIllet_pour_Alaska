@@ -27,7 +27,7 @@
 
   <body> 
     <!-- Navigation -->
-    <?php require_once('view/frontend/entete.php');?>
+    <?php require_once('view/frontEnd/entete.php');?>
 
    
 
@@ -94,7 +94,7 @@
     <hr> 
 
   <!-- Footer -->
-  <?php require_once('view/frontend/footer.php');?> 
+  <?php require_once('view/frontEnd/footer.php');?> 
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

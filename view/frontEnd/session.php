@@ -5,7 +5,7 @@
   $database = new Database();
   $dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');
+  require_once('controler/frontEnd/protect_access.php');
 
   if(isset($_SESSION['userEmail'])){
     $userManager = new UserManager($dbh);
@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Clean Blog - Start Bootstrap Theme</title> 
+  <title>Billet Pour l'Alaska</title> 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
@@ -39,7 +39,7 @@
 <body style="background-image: url('img/session-background.jpg')">
   
   <!-- Navigation -->
-<?php require_once('view/frontend/entete.php');?>
+<?php require_once('view/frontEnd/entete.php');?>
 
 
 
@@ -140,7 +140,7 @@
   </div>
   
   <!-- Footer -->    
-  <?php require_once('view/frontend/footer.php');?>
+  <?php require_once('view/frontEnd/footer.php');?>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 

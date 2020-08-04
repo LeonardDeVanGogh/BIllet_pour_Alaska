@@ -4,7 +4,7 @@ spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
 
 if(!isset($permission)){
   header("location:index.php?page=home");
@@ -17,11 +17,12 @@ if(!isset($permission)){
 }
 
 $articleId =  $_GET['id_article'];
-$articleManager = new articleManager($dbh);
+$articleManager = new ArticleManager($dbh);
 $oneArticle = $articleManager->readOne($articleId);	 
 while($donnees = $oneArticle->fetch()) {
   $article = new Article($donnees);
-  unlink('img/' . $article->pictureName());
+  $article->pictureName()!="default.jpg"?unlink('img/' . $article->pictureName()):"";
+  
   $commentManager = new CommentManager($dbh);
   $readComment = $commentManager->readComment($_GET['id_article']);
   while($donneesComment = $readComment->fetch()){

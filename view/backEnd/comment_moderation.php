@@ -6,7 +6,7 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
 if(!isset($permission)){
   header("location:index.php?page=home");
   die();
@@ -29,7 +29,7 @@ $commentManager = new CommentManager($dbh);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Clean Blog - Start Bootstrap Theme</title> 
+  <title>Billet pour l'Alaska</title> 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
@@ -44,7 +44,7 @@ $commentManager = new CommentManager($dbh);
 <body>
   
   <!-- Navigation -->
-  <?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontEnd/entete.php');?>
 
   <!-- Main Content -->
   <div class="container navWithoutPicture">
@@ -57,7 +57,7 @@ $commentManager = new CommentManager($dbh);
           Raison: <?= $donnees['report_reason'] ?>
         </div>
       </div>
-      <?php include('view/frontend/comment.php');
+      <?php include('view/frontEnd/comment.php');
     }
   ?>              
   </div>

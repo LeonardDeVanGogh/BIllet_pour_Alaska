@@ -5,7 +5,7 @@
   $database = new Database();
   $dbh = $database->getConnection();
 
-  require_once('controler/frontend/protect_access.php');
+  require_once('controler/frontEnd/protect_access.php');
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 <body>
 
   <!-- Navigation -->
-  <?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontEnd/entete.php');?>
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
@@ -101,7 +101,7 @@
   <hr>
 
   <!-- Footer -->
-  <?php require_once('view/frontend/footer.php');?>
+  <?php require_once('view/frontEnd/footer.php');?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

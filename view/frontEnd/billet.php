@@ -6,12 +6,19 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
+  if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>=1)
+  {
+    $manager = new ArticleManager($dbh);
+    $nbArticles  = $manager->readOne($_GET['id_article']);
 
+    while($donnees = $nbArticles->fetch()) {
+      $article = new Article($donnees);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
 
@@ -19,8 +26,14 @@ require_once('controler/frontend/protect_access.php');
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta property="og:title" content="Billet pour l\'Alaska: <?= $article->title() ?>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.billetpourlalaska.com/index.php?page=billet&id_article=<?= $article->id() ?>" />
+  <?php echo '<meta property="og:image" content="http://www.billetpourlalaska.com/img/' . $article->pictureName() . '" />' ;?>
+  <?php echo'<meta property="og:site_name" content="Billet pour l\'Alaska: ' . $article->title() . '" />' ;?>
 
-  <title>Clean Blog - Start Bootstrap Theme</title>
+
+  <title>Billet pour l'Alaska</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,16 +53,11 @@ require_once('controler/frontend/protect_access.php');
 
   <!-- Navigation -->
   <?php 
-  require_once('view/frontend/entete.php');
+  require_once('view/frontEnd/entete.php');
 
-  if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>=1)
-  {
-    $manager = new ArticleManager($dbh);
-    $nbArticles  = $manager->readOne($_GET['id_article']);
 
-    while($donnees = $nbArticles->fetch()) {
 
-      $article = new Article($donnees); ?>
+       ?>
       <!-- Page Header -->
       <header class="masthead" style="background-image: url('img/<?= $article->pictureName() ?>')">
         <div class="overlay"></div>
@@ -130,13 +138,13 @@ require_once('controler/frontend/protect_access.php');
         $idArticle = $_GET['id_article'];
         $nbComments  = $commentManager->readComment($_GET['id_article']);
         while ($donnees = $nbComments->fetch()){
-          include('view/frontend/comment.php');
+          include('view/frontEnd/comment.php');
         }?>
 
       </div>
     </div>
     <!-- Footer -->
-    <?php require_once('view/frontend/footer.php');?>    
+    <?php require_once('view/frontEnd/footer.php');?>    
     <?php
   }else{
     header("location:index.php?page=home");

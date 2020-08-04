@@ -1,7 +1,7 @@
 <?php
 
   defined("_Can_access_") or die("Inclusion directe non autorisée");
-  include('controler/frontend/protect_access.php');
+  include('controler/frontEnd/protect_access.php');
 if(!isset($permission)){
   header("location:index.php?page=home");
   die();

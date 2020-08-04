@@ -6,7 +6,7 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
 if (isset($permission)){
   if($_SESSION['userRank']=="moderator" OR $_SESSION['userRank']=="administrator"){ ?>
 
@@ -18,7 +18,7 @@ if (isset($permission)){
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Clean Blog - Start Bootstrap Theme</title> 
+      <title>Billet pour l'Alaska</title> 
       <!-- Bootstrap core CSS -->
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom fonts for this template -->
@@ -32,7 +32,7 @@ if (isset($permission)){
 
     <body>      
       <!-- Navigation -->
-      <?php require_once('view/frontend/entete.php');?>
+      <?php require_once('view/frontEnd/entete.php');?>
 
       <!-- Main Content -->
       <div class="container navWithoutPicture">

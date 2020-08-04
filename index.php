@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 define("_Can_access_", true);
 

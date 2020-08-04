@@ -6,7 +6,7 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-require_once('controler/frontend/protect_access.php');
+require_once('controler/frontEnd/protect_access.php');
 
 if(!isset($permission)){
 header("location:index.php?page=home");
@@ -39,7 +39,7 @@ if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDAT
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Clean Blog - Start Bootstrap Theme</title>
+  <title>Billet pour l'Alaska</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@ if (isset($_GET['id_article']) && filter_var($_GET['id_article'], FILTER_VALIDAT
 <body>
 
   <!-- Navigation -->
-  <?php require_once('view/frontend/entete.php');?>
+  <?php require_once('view/frontEnd/entete.php');?>
 
 
 
