@@ -22,6 +22,7 @@ if ($user!='' && $email!='' && $password!='' && $passwordConfirmation!=''){
 		if ($password === $passwordConfirmation){
 			$password = password_hash($_POST['userPasswordInscription'], PASSWORD_DEFAULT);
 			$userManager->createUser($user, $email, $password);
+			mail('contact@billetpourlalaska.com', "new: " . utf8_decode($user),'');
 			header("Location: index.php?page=login&email=" . $email);
 		}else{
 			header("Location: index.php?page=inscription&user=" . $_POST['userInscription'] . "&email=" . $email . "&mismatchPassword=true");

@@ -21,10 +21,10 @@ $id = $_GET['user_id'];
 $userManager = new UserManager($dbh);
 $userReaded = $userManager->readUserById($id);
 
-
 while ($donnees = $userReaded->fetch()){
 	$user = new User($donnees);
 }
+mail('contact@billetpourlalaska.com', "delete: " . utf8_decode($user->user()),'');
 $userManager->deleteUser($id);
 
 if ($user->email()!= $_SESSION['userEmail']){

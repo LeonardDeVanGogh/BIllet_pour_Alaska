@@ -21,4 +21,10 @@ $rank = $_GET['new_rank'];
 $userManager = new UserManager($dbh);
 $userManager->updateUserRank($id,$rank);
 
+$userUpdated = $userManager->readUserById($_GET['user_id']);
+while($donnees = $userUpdated->fetch()){
+	$user = new User($donnees);
+}
+mail('contact@billetpourlalaska.com',"update: ". $_GET['new_rank'] . " / " . utf8_decode($user->user()),'');
+
 header("Location: index.php?page=user_administration");
