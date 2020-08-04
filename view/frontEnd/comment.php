@@ -4,7 +4,7 @@
 
   <!-- Comment Content -->     
   <div class="row col-lg-12 justify-content-center">
-    <article class="col-lg-6 comment" id="' . $comment->id() . '">
+    <div class="col-lg-6 comment" id="<?= $comment->id() ?>">
       <div class="row justify-content-center">
         <div class="mx-auto">
           <?= $comment->comment() ?>
@@ -28,18 +28,17 @@
         if($comment->moderated()==0){ ?>
           <div class="col-lg-2 col-xs-2">               
             <a role="button" class="controls far fa-flag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="signaler">(<?= $comment->report() ?>)</a>
-              <div class="dropdown-menu" aria-labelledby="menuDeroulant">
+              <div class="dropdown-menu">
                 <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=insulte/injure">insulte/injure</a>
-                <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=propos offensant/racisme">propos offensant/racisme</a>
-                <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=commentaire à caractère politique">commentaire à caractère politique</a>
+                <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=propos_offensant/racisme">propos offensant/racisme</a>
+                <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=commentaire_à_caractère_politique">commentaire à caractère politique</a>
                 <a class="dropdown-item" href="index.php?page=report_comment&comment_id=<?= $comment->id() ?>&id_article=<?= $comment->id_article() ?>&report_reason=autre">autre</a>
               </div>
-            <a>
+
           </div>
-        <?php } ?>              
-        
+        <?php } ?>                      
       </div>
-    </article>
+    </div>
   </div>
 
 

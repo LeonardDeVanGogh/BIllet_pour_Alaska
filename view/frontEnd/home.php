@@ -41,7 +41,7 @@
 
 <body>
 
-<?php require_once('view/frontEnd/entete.php');?>
+  <?php require_once('view/frontEnd/entete.php');?>
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('img/home-background.jpg')">
@@ -56,20 +56,15 @@
         </div>
       </div>
     </div>
-  </header>
-
-  <div class="container">
-    <?php 
-      if(isset($permission) && $permission->article_add()==1){ ?>
+  </header> 
+  <?php 
+    if(isset($permission) && $permission->article_add()==1){ ?>
+      <div class="container">
         <div class="row">
           <a role="button" class="col-lg-6 mx-auto controls fas fa-file-alt fa-3x addArticle" aria-haspopup="true" aria-expanded="false" title="nouvel article" href="index.php?page=manage_billet&id_article=0"> Nouvel Article</a>
         </div>
-  </div>
-    <?php 
-      } 
-    ?>
-    
-
+      </div>
+    <?php } ?>    
   <!-- Main Content -->
   <div class="container">
     <div class="row">
@@ -98,7 +93,6 @@
               <?php
             }
         ?>
-
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
@@ -106,20 +100,13 @@
       </div>
     </div>
   </div>
-
   <hr>
-
   <!-- Footer -->
   <?php require_once('view/frontEnd/footer.php');?>
-
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
-
-
 </body>
-
 </html>

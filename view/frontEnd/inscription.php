@@ -56,7 +56,7 @@
       <?php echo (isset($_GET['missingField']))? '<div class=row><div class="col-lg-12 text-center colorWrong">tous les champs doivent être rempli</div></div>' : '';?>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <form name="userInscription" id="userInscription" method="post" action="index.php?page=user_inscription" novalidate>
+          <form name="userInscriptionForm" id="userInscriptionForm" method="post" action="index.php?page=user_inscription" novalidate>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Quel pseudonyme desirez-vous?</label>

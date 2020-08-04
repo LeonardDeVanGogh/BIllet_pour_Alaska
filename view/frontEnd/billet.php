@@ -16,7 +16,7 @@ if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>
     $article = new Article($donnees); ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="fr">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,10 +76,8 @@ if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>
             <span>Effacer Article</span>
           </a>
           <?php } ?>
-
         </div>
       </div>
-
       <!-- Article Content -->
       <article>
         <div class="container article">                
@@ -90,48 +88,43 @@ if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>
           </div>
         </div>
       </article>';
-
   <?php } ?>
-
-      <!-- Add Comment -->
-      <div class="container">
-        <div class="row col-lg-12 justify-content-center">
-          <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=add_comment" novalidate>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label></label>
-                <input type="textarea" class="form-control" name="addComment" required data-validation-required-message="merci d'écrire votre commentaire">
-                <p class="help-block text-danger"></p>
-              </div>
-              <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendCommentButton">
-                <i class="fas fa-envelope"></i>
-                <span> Envoyer</span>
-              </button>
-            </div>
-          </form>
+  <!-- Add Comment -->
+  <div class="container">
+    <div class="row col-lg-12 justify-content-center">
+      <form name="newComment" class="col-lg-6" id="newComment" method="post" action="index.php?page=add_comment" novalidate>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Nouveau Commentaire</label>
+            <input type="text" class="form-control" name="addComment" required data-validation-required-message="merci d'écrire votre commentaire">
+            <p class="help-block text-danger"></p>
+          </div>
+          <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
         </div>
-      </div>
-
-      <!-- Comments -->
-      <div class="container" style="background-image: url('img/comment-background.jpg')">
-        <?php
-        $commentManager = new CommentManager($dbh);
-        $idArticle = $_GET['id_article'];
-        $nbComments  = $commentManager->readComment($_GET['id_article']);
-        while ($donnees = $nbComments->fetch()){
-          include('view/frontEnd/comment.php');
-        }?>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="sendCommentButton">
+            <i class="fas fa-envelope"></i>
+            <span> Envoyer</span>
+          </button>
+        </div>
+      </form>
     </div>
-    <!-- Footer -->
-    <?php require_once('view/frontEnd/footer.php');
-  }else{
-    header("location:index.php?page=home");
-  } ?>
-
+  </div>
+  <!-- Comments -->
+  <div class="container" style="background-image: url('img/comment-background.jpg')">
+    <?php
+    $commentManager = new CommentManager($dbh);
+    $idArticle = $_GET['id_article'];
+    $nbComments  = $commentManager->readComment($_GET['id_article']);
+    while ($donnees = $nbComments->fetch()){
+      include('view/frontEnd/comment.php');
+    }?>
+  </div>
+  <!-- Footer -->
+  <?php require_once('view/frontEnd/footer.php');
+}else{
+  header("location:index.php?page=home");
+} ?>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
