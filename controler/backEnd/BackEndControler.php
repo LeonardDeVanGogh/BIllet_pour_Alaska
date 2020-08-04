@@ -6,9 +6,9 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		{
 			require("controler/backEnd/delete_comment.php");
 		}
-		public function hideComment()
+		public function validateComment()
 		{
-			require("controler/backEnd/hide_comment.php");
+			require("controler/backEnd/validate_comment.php");
 		}
 		public function manageBillet()
 		{
@@ -41,12 +41,7 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		public function commentModeration()
 		{
 			require("view/backEnd/comment_moderation.php");
-		}
-		public function validateComment()
-		{
-			require("controler/backEnd/validate_comment.php");
-		}
-		
+		}		
 	}
 
 ?>

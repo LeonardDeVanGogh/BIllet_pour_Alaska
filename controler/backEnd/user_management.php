@@ -4,8 +4,8 @@ spl_autoload_register('chargerClasse');
 
 $database = new Database();
 $dbh = $database->getConnection();
+require_once('controler/frontEnd/protect_access.php');
 
-  require_once('controler/frontEnd/protect_access.php');
 if(!isset($permission)){
   header("location:index.php?page=home");
   die();
@@ -18,9 +18,7 @@ if(!isset($permission)){
 
 $id = $_GET['user_id'];
 $rank = $_GET['new_rank'];
-
 $userManager = new UserManager($dbh);
-
 $userManager->updateUserRank($id,$rank);
 
 header("Location: index.php?page=user_administration");

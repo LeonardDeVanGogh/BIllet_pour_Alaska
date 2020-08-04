@@ -97,11 +97,7 @@ if (isset($_GET['page']))
     if($_GET['page']=="delete_comment")
     {
         $backEndControler->deleteComment();
-    }
-    if($_GET['page']=="hide_comment")
-    {
-        $backEndControler->hideComment();
-    }    
+    }   
     if($_GET['page']=="user_administration")
     {
         $backEndControler->userAdministration();

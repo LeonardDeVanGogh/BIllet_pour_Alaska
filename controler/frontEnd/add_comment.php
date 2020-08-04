@@ -5,7 +5,6 @@ spl_autoload_register('chargerClasse');
 $database = new Database();
 $dbh = $database->getConnection();
 
-
 $comment =  htmlspecialchars($_POST['addComment']);
 $articleId =  filter_var($_POST['articleId'], FILTER_VALIDATE_INT);
 

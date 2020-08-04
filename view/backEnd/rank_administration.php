@@ -39,14 +39,11 @@ if(!isset($permission)){
   <link href="css/style.css" rel="stylesheet">
 </head>
  
-<body>
-  
+<body>  
   <!-- Navigation -->
   <?php require_once('view/frontEnd/entete.php');?>
-
   <!-- Main Content -->
-  <div class="container navWithoutPicture">
- 
+  <div class="container navWithoutPicture"> 
     <?php 
       $rank = "user";
       include('view/backEnd/rank_administration_form.php');
@@ -54,21 +51,13 @@ if(!isset($permission)){
       include('view/backEnd/rank_administration_form.php');
       $rank = "administrator";
       include('view/backEnd/rank_administration_form.php');
-    ?>
-              
+    ?>              
   </div>      
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-
-  <!-- Contact Form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script> 
-
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script> 
-
 </body> 
-
 </html>

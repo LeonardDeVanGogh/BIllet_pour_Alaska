@@ -14,8 +14,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Blog">
+  <meta name="author" content="Jean Forteroche">
+  <meta property="og:title" content="Billet pour l'Alaska" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.billetpourlalaska.com?page=contact" />
+  <meta property="og:image" content="http://www.billetpourlalaska.com/img/contact-bg.jpg" />
+  <meta property="og:site_name" content="http://www.billetpourlalaska.com" />
   <title>BIllet pour l'Alaska</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
