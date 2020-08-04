@@ -76,6 +76,10 @@ if (isset($_GET['page']))
     {
         $frontEndControler->contact();
     }
+    if($_GET['page']=="contact_mail")
+    {
+        $frontEndControler->contactMail();
+    }
 
     # --------------- backEndControler --------------- #
     if($_GET['page']=="manage_billet")

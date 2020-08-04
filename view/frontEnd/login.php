@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Clean Blog - Start Bootstrap Theme</title> 
+  <title>Billet pour l'Alaska</title> 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
@@ -73,8 +73,8 @@
       </div>
     </div>
     <div class="row">
-             <a href="index.php?page=inscription" class="col-lg-8 col-md-10 mx-auto">Inscription</a>
-         </div>
+       <a href="index.php?page=inscription" class="col-lg-8 col-md-10 mx-auto">Inscription</a>
+   </div>
   </div>
 
   <hr>

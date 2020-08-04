@@ -27,6 +27,10 @@ defined("_Can_access_") or die("Inclusion directe non autorisée");
 		{
 			require('view/frontEnd/contact.php');
 		}
+		public function contactMail()
+		{
+			require('controler/frontEnd/contact_me.php');
+		}
 		public function userInfosUpdate()
 		{
 			require('controler/frontEnd/user_infos_update.php');

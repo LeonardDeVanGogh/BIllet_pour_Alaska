@@ -116,7 +116,7 @@ require_once('controler/frontEnd/protect_access.php');
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label></label>
-                <input type="textarea" class="form-control" name="addComment" placeHolder="écrivez votre commentaire ici" required data-validation-required-message="merci d'écrire votre commentaire">
+                <input type="textarea" class="form-control" name="addComment" required data-validation-required-message="merci d'écrire votre commentaire">
                 <p class="help-block text-danger"></p>
               </div>
               <?php echo '<input type="hidden" name="articleId" value="' . $article->id() . '">' ?>
