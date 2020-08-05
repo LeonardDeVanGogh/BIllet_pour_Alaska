@@ -68,7 +68,7 @@
               <div class="form-group floating-label-form-group controls">
                 <?php echo (isset($_GET['emailALreadyExist']))? '<div class=row><div class="col-lg-12 text-center colorWrong">l\'email utilisé est déjà utilisé</div></div>' : '';?>
                 <label>veuillez inserer votre adresse email:</label>
-                <?php echo'<input type="text" class="form-control" name="userEmailInscription" id="userEmailInscription" placeHolder="email" required data-validation-required-message="Please enter your email address." value="' . $email . '">';?>
+                <?php echo'<input type="email" class="form-control" name="userEmailInscription" id="userEmailInscription" placeHolder="email" required data-validation-required-message="Please enter your email address." value="' . $email . '">';?>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
