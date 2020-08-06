@@ -8,7 +8,7 @@ if(empty($_POST['name']) || empty($_POST['email']) || empty($_POST['phone']) || 
 	$phone = strip_tags(htmlspecialchars($_POST['phone']));
 	$message = strip_tags(htmlspecialchars($_POST['message']));
 	mail('contact@billetpourlalaska.com', 'Contact de Billet pour l\'Alaska de: ' . utf8_decode($name), 
-		'email: ' . utf8_decode($email) . "\n" .
+		'email: ' . utf8_decode($email_address) . "\n" .
 		'phone number: ' . $phone . "\n" .
 		"Message: " . utf8_decode($message)
 		);
