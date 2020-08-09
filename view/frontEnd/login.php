@@ -41,7 +41,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
             <h1>connexion</h1>
-            <span class="subheading">Connectez vous pour accéder à votre espace privé?</span>
+            <span class="subheading">Connectez-vous pour accéder à votre espace privé</span>
           </div>
         </div>
       </div>

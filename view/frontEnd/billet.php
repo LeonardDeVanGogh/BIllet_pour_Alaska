@@ -111,7 +111,7 @@ if (filter_var($_GET['id_article'], FILTER_VALIDATE_INT) && $_GET['id_article']>
     </div>
   </div>
   <!-- Comments -->
-  <div class="container" style="background-image: url('img/comment-background.jpg')">
+  <div class="container">
     <?php
     $commentManager = new CommentManager($dbh);
     $idArticle = $_GET['id_article'];

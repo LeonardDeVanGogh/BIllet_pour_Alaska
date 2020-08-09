@@ -45,8 +45,8 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>Contactez nous</h1>
-            <span class="subheading">Vous avez un question? J'ai la réponse.</span>
+            <h1>Contactez-nous</h1>
+            <span class="subheading">Vous avez une question ? J'ai la réponse.</span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Envie de nous écrire ? complétez le formulaire ci-bas pour nous envoyer un message, nous reviendrons vers vous au plus vite!</p>
+        <p>Envie de nous écrire ? complétez le formulaire ci-bas pour nous envoyer un message, nous reviendrons vers vous au plus vite !</p>
       </div>
       <div class="container">
         <?php 
