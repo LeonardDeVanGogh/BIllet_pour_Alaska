@@ -16,7 +16,7 @@ class CommentManager
 
     public function readComment($idArticle)
     {
-        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report, moderated, validated FROM comment WHERE id_article = :id_article ORDER BY id DESC");
+        $req = $this->_dbh->prepare("SELECT id, id_article, comment, report, moderated, validated FROM comment WHERE id_article = :id_article AND report < 5 ORDER BY id DESC");
         $req->execute(array(
             'id_article' => $idArticle,
             ));
